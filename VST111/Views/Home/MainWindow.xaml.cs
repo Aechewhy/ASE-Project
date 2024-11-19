@@ -35,27 +35,13 @@ namespace VST111.Views
                 textBox.Foreground = new SolidColorBrush(Colors.Gray);
             }
         }
-        private void LoadTableData()
-        {
-            // Connection string for your database
-            string connectionString = "Server=DESKTOP-G0GQNUT\\SQLEXPRESS;Database=[Livestock management];Integrated Security=True;";
-
-            string query = "SELECT * waste_treatment.facility"; // Replace with your actual table name
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
-                DataTable dataTable = new DataTable();
-                dataAdapter.Fill(dataTable);
-                DataGridTable.ItemsSource = dataTable.DefaultView;
-            }
-        }
 
         private void Function1_Click(object sender, RoutedEventArgs e)
         {
-            LoadTableData();
+            var data = new Provider().Select("livestockFacility");
+            DataGridTable.ItemsSource = data.DefaultView;
             DataGridTable.Visibility = Visibility.Visible; // Show the DataGrid
         }
-    }   
+    }
 
 }

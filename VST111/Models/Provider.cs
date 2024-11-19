@@ -130,8 +130,8 @@ namespace System
 
     public class Provider
     {
-        string _hostName = @"LOCALHOST\SQLEXPRESS";
-        string _dataName = @"Livestock management";
+        string _hostName = @"LOCALHOST";
+        string _dataName = @"livestock";
         SqlConnection _conn;
 
         public string HostName

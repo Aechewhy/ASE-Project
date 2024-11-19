@@ -18,7 +18,7 @@
             <StackPanel>
                 <TextBlock Text="Logo" FontSize="14" FontWeight="Bold" Margin="10,10,0,0"/>
                 <TextBlock Text="Sidebar" FontSize="10" Margin="10,50,0,0"/>
-                <Button Content="Function 1" Margin="10,100,0,0" Width="150"/>
+                <Button Content="Function 1" Margin="10,100,0,0" Width="150" Click="Function1_Click"/>
                 <Button Content="Function 2" Margin="10,140,0,0" Width="150"/>
 
                 <!-- Toggle Button for additional functions -->
@@ -28,6 +28,7 @@
                     <Button Content="Function 4" Margin="10,10,0,0" Width="150"/>
                     <Button Content="Function 5" Margin="10,10,0,0" Width="150"/>
                     <Button Content="Function 6" Margin="10,10,0,0" Width="150"/>
+                    
                 </StackPanel>
             </StackPanel>
         </DockPanel>
