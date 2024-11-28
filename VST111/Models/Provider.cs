@@ -131,7 +131,7 @@ namespace System
     public class Provider
     {
         string _hostName = @"LOCALHOST";
-        string _dataName = @"livestock";
+        string _dataName = @"[Livestock management]";
         SqlConnection _conn;
 
         public string HostName

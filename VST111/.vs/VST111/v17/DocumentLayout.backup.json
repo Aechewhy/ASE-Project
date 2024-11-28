@@ -1,25 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\",
+  "WorkspaceRootPath": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|c:\\users\\nguyen trong phuc\\source\\repos\\vst111\\views\\home\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|solutionrelative:views\\home\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\models\\provider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|c:\\users\\lenovo legion\\onedrive - hanoi university of science and technology\\documents\\repositories\\ase-project\\vst111\\models\\provider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|solutionrelative:models\\provider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\views\\home\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|solutionrelative:views\\home\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|solutionrelative:views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01700CFE-E04D-46D9-8392-3EA80F1543B1}|VST111.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,11 +42,37 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Provider.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\Models\\Provider.cs",
+              "RelativeDocumentMoniker": "Models\\Provider.cs",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\Models\\Provider.cs",
+              "RelativeToolTip": "Models\\Provider.cs",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAIwKEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T09:08:57.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\Views\\Home\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\Home\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\Views\\Home\\MainWindow.xaml.cs*",
+              "RelativeToolTip": "Views\\Home\\MainWindow.xaml.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T04:08:13.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",
-              "ToolTip": "C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\App.xaml.cs",
               "RelativeToolTip": "App.xaml.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -56,51 +82,24 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\Controllers\\HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Controllers\\HomeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T01:31:21.47Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-13T01:31:21.47Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\Views\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\Views\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Views\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\Views\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\VST111\\Views\\MainWindow.xaml",
               "RelativeToolTip": "Views\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-12T03:54:02.175Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\Views\\Home\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\Home\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\Views\\Home\\MainWindow.xaml.cs",
-              "RelativeToolTip": "Views\\Home\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T04:08:13.447Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Provider.cs",
-              "DocumentMoniker": "C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\Models\\Provider.cs",
-              "RelativeDocumentMoniker": "Models\\Provider.cs",
-              "ToolTip": "C:\\Users\\NGUYEN TRONG PHUC\\source\\repos\\VST111\\Models\\Provider.cs",
-              "RelativeToolTip": "Models\\Provider.cs",
-              "ViewState": "AgIAAMAAAAAAAAAAAAAAAIYAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T09:08:57.553Z",
               "EditorCaption": ""
             }
           ]

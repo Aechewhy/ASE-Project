@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BTL VST")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+586306c214db8dd5011ea2040b0395d9365bf226")]
 [assembly: System.Reflection.AssemblyProductAttribute("BTL VST")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BTL VST")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

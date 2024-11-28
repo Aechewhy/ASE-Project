@@ -38,7 +38,7 @@ namespace VST111.Views
 
         private void Function1_Click(object sender, RoutedEventArgs e)
         {
-            var data = new Provider().Select("livestockFacility");
+            var data = new Provider().Select("certificate");
             DataGridTable.ItemsSource = data.DefaultView;
             DataGridTable.Visibility = Visibility.Visible; // Show the DataGrid
         }

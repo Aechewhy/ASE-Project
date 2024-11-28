@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\VST111",
+    "\\VST111\\Views",
+    "\\VST111\\Views\\Home"
   ],
-  "SelectedNode": "\\MainWindow.xaml.cs",
+  "SelectedNode": "\\VST111\\Views\\Home\\MainWindow.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

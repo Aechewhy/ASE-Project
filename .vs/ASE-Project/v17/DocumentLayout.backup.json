@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\DashBoard.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DashBoard.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\DashBoard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DashBoard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\Window1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Window1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\DashBoard.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DashBoard.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\Window1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Window1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Window1.xaml.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\Window1.xaml.cs",
               "RelativeDocumentMoniker": "Window1.xaml.cs",
@@ -38,12 +38,11 @@
               "RelativeToolTip": "Window1.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T13:35:15.227Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-11T13:35:15.227Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
@@ -51,8 +50,7 @@
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T13:34:20.66Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-11T13:34:20.66Z"
             },
             {
               "$type": "Document",
@@ -62,20 +60,19 @@
               "RelativeDocumentMoniker": "DashBoard.xaml.cs",
               "ToolTip": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\DashBoard.xaml.cs",
               "RelativeToolTip": "DashBoard.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABDAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T13:32:55.257Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-11T13:32:55.257Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "DashBoard.xaml",
               "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\DashBoard.xaml",
               "RelativeDocumentMoniker": "DashBoard.xaml",
               "ToolTip": "C:\\Users\\LENOVO LEGION\\OneDrive - Hanoi University of Science and Technology\\Documents\\Repositories\\ASE-Project\\DashBoard.xaml",
               "RelativeToolTip": "DashBoard.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-11T13:32:32.362Z",
               "EditorCaption": ""
