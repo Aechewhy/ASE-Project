@@ -1,0 +1,53 @@
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\bin\Debug\net8.0-windows\BTL VST.exe
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\bin\Debug\net8.0-windows\BTL VST.deps.json
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\bin\Debug\net8.0-windows\BTL VST.runtimeconfig.json
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\bin\Debug\net8.0-windows\BTL VST.dll
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\bin\Debug\net8.0-windows\BTL VST.pdb
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\ChangePasswordWindow.g.cs
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\ForgotPasswordWindow.g.cs
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\HomePage.g.cs
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST_MarkupCompile.cache
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST_MarkupCompile.lref
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\ChangePasswordWindow.baml
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\ForgotPasswordWindow.baml
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\HomePage.baml
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.g.resources
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.AssemblyInfoInputs.cache
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.AssemblyInfo.cs
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.dll
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\refint\BTL VST.dll
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.pdb
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.genruntimeconfig.cache
+C:\Users\Lenovo\source\repos\BTL VST\BTL VST\obj\Debug\net8.0-windows\ref\BTL VST.dll
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\bin\Debug\net8.0-windows\BTL VST.exe
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\bin\Debug\net8.0-windows\BTL VST.deps.json
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\bin\Debug\net8.0-windows\BTL VST.runtimeconfig.json
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\bin\Debug\net8.0-windows\BTL VST.dll
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\bin\Debug\net8.0-windows\BTL VST.pdb
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\ChangePasswordWindow.g.cs
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\ForgotPasswordWindow.g.cs
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\HomePage.g.cs
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST_MarkupCompile.cache
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST_MarkupCompile.lref
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\ChangePasswordWindow.baml
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\ForgotPasswordWindow.baml
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\HomePage.baml
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.g.resources
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.AssemblyInfoInputs.cache
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.AssemblyInfo.cs
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.dll
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\refint\BTL VST.dll
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.pdb
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\BTL VST.genruntimeconfig.cache
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\ref\BTL VST.dll
+C:\Users\LENOVO LEGION\LENOVO LEGION\BTL VST\BTL VST\BTL VST\obj\Debug\net8.0-windows\LoginWindow.g.cs
