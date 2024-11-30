@@ -1,0 +1,40 @@
+{{#if admin}}
+{{> header}}
+{{else}}
+{{> headerUserView}}
+{{/if}}
+<div class="container content-body">
+    <h1 class="name-details">{{group.name}}</h1>
+    <div>
+        <div>
+            <h2>Mô tả</h2>
+            <p> {{breaklines group.description}}</p>
+            <p>Ngày tạo: {{group.createdAt}}</p>
+            <h2>Thành viên</h2>
+            <table class="table">{{!-- Student table --}}
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Thành viên nhóm</th>
+                        <th scope="col">Mã sinh viên</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each students}}
+                    <tr>
+                        <td>{{sum @index 1}}</td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.labGroupId}}</td>
+                        <td>{{this.mssv}}</td>
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

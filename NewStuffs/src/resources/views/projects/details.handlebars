@@ -1,0 +1,40 @@
+{{#if admin}}
+{{> header}}
+{{else}}
+{{> headerUserView}}
+{{/if}}
+<div class="container content-body">
+    <h1 class="name-details mb-4">{{project.name}}</h1>
+    <div>
+        <div class="text-center">
+            <img src="../../../img/projects/{{project.image}}" style=" height: 451px; " alt="ơ không sao ra">
+        </div>
+        <div class="mt-4">
+            <h2>Mô tả</h2>
+            <p> {{breaklines project.description}}</p>
+            <h2>Nhóm thực hiện</h2>
+            <table class="table">{{!-- Team table --}}
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tên nhóm</th>
+                        <th scope="col">Mô tả</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each groups}}
+                    <tr>
+                        <td>{{sum @index 1}}</td>
+                        <td>{{this.id}}</td>
+                        <td>{{this.name}}</td>
+                        <td>{{breaklines this.description}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <p> <strong>Ngày tạo: </strong>{{project.createdAt}}</p>
+        </div>
+    </div>
+</div>
