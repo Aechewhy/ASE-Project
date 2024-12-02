@@ -1,0 +1,23 @@
+{
+  "name": "nodejs_prj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "nodemon --inspect src/main.js",
+    "build-css": "sass src/resources/scss:src/public/css",
+    "watch-css": "sass --watch src/resources/scss:src/public/css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "express-handlebars": "^8.0.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.7",
+    "sass": "^1.81.0"
+  }
+}
