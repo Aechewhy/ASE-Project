@@ -6,9 +6,11 @@ const newsRouter = require("./news");
 const projectsRouter = require("./projects");
 const studentsRouter = require("./students");
 const sampleRouter = require("./news");
+const showTableRouter = require("./showTable");
 
 function route(app) {
     app.use("/sample", sampleRouter); // Đường dẫn cho auth
+    app.use("/showTable", showTableRouter); // Đường dẫn cho students
     app.use("/auth", authRouter); // Đường dẫn cho auth
     app.use("/groups", groupsRouter); // Đường dẫn cho groups
     app.use("/news", newsRouter); // Đường dẫn cho news

@@ -1,0 +1,59 @@
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Database Table</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        />
+    </head>
+
+    <body>
+        <div class="cont ainer mt-5">
+            <h1 class="mb-4">Database Table</h1>
+
+            <!-- Table to display data -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>ID</th>
+                        <th>Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each groups}}
+                        <!-- Loop through data passed to the view -->
+                        <tr>
+                            <td>{{this.id}}</td>
+                            <!-- Assuming each record has an 'id' -->
+                            <td>{{this.name}}</td>
+                            <!-- Replace 'name' with your actual column -->
+                            <td>{{this.description}}</td>
+                            <!-- Replace 'email' with your actual column -->
+                            <td>{{this.createdAt}}</td>
+                            <!-- Replace 'age' with your actual column -->
+                        </tr>
+                    {{else}}
+                        <tr>
+                            <td colspan="4">No data available</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        ></script>
+    </body>
+
+</html>
