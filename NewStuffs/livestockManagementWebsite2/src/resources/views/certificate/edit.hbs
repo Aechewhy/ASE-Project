@@ -1,0 +1,23 @@
+
+<div class="container content-body">
+    <h2 style="margin-bottom: 24px;">Cập nhật thông tin chứng chỉ</h2>
+    <form method="POST" action="/certificate/{{certificate.id}}?_method=PUT" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Tên chứng chỉ</label>
+                <input value="{{certificate.name}}" name="name" id="name" type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="facility">Cơ quan chứng nhận</label>
+                <select name="certificate_facility_id" id="certificate_facility_id" class="form-control" required>
+                  <option value="">-- Chọn cơ quan chứng nhận --</option>
+                  {{#each facilities}}
+                    <option value="{{this.id}}" {{#ifEquals this.id ../certificate.certificate_facility_id}}selected{{/ifEquals}}>
+                      {{this.name}}
+                    </option>
+                  {{/each}}
+                </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu Lại</button>
+    </form>
+</div>
