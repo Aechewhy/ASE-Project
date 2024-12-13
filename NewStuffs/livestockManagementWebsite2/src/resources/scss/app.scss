@@ -1,0 +1,61 @@
+/* Ensure the body takes up at least the full height of the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Flexbox layout to push the footer to the bottom */
+  .app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Main content should take up the remaining space */
+  .main-content {
+    flex: 1;
+  }
+
+  /* Header styles */
+.header {
+    background-color: #343a40; /* Dark background color */
+    color: #ffffff; /* White text color */
+    padding: 1rem;
+    text-align: center;
+    font-family: Arial, sans-serif; /* Set font family */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the header is above other content */
+  }
+  
+  /* Sticky footer styles */
+  .footer {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    background-color: #494c40; /* Dark background color */
+    padding: 1rem 0;
+    text-align: center;
+    font-family: Arial, sans-serif; /* Set font family */
+    color: #ffffff; /* White text color */
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    background-color: #343a40; /* Dark background color */
+    color: #ffffff; /* White text color */
+    position: fixed;
+    padding: 1rem;
+    height: 100vh; /* Full height */
+    width: 150px;
+    margin-left: -15px; /* Adjust margin to remove strip on the left side */
+  }
+  
+  .sidebar .nav-link {
+    color: #ffffff; /* White text color for links */
+  }
+  
+  .sidebar .nav-link:hover {
+    background-color: #495057; /* Slightly lighter background on hover */
+  }
