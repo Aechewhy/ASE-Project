@@ -1,52 +1,52 @@
 
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID chứng chỉ</th>
+      <th scope="col">Tên chứng chỉ</th>
+      <th scope="col">Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each certificate}}
+    <tr>
+      <td>{{this.id}}</td>
+      <td>{{this.name}}</td>
+      <td>
+        <div class="btn-group" role="group">
+          <a href="/certificate/{{this.id}}">
+            <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
+          </a>
+          <a href="/certificate/{{this.id}}/edit">
+            <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
+          </a>
+          <a>
+            <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#deleteCertificateModal">Xoá</button>
+          </a>
+        </div>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certificate List</title>
-  <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
-</head>
-<body>
-  <h1>Certificate List</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Tên chứng chỉ</th>
-        <th>Thao tác</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each certificate}}
-      <tr>
-        <td>{{this.id}}</td>
-        <td>{{this.name}}</td>
-        <td>
-          <div class="btn-group-vertical">
-            <a href="/certificate/{{this.id}}">
-              <button class="btn-detail" data-id="{{this.id}}">Chi tiết</button>
-            </a>
-          </div>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-</body>
-</html>
+{{!-- Confirm xoá --}}
+<div class="modal fade" id="deleteCertificateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xoá chứng chỉ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn chắc chắn muốn xoá chứng chỉ này chứ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger">Xoá</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+      </div>
+    </div>
+  </div>
+</div>

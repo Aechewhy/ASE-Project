@@ -13,7 +13,6 @@ async function initializeDatabase() {
 
     await sequelize.sync({ alter: true });
     console.log("Đồng bộ hóa thành công cơ sở dữ liệu.");
-
   } catch (err) {
     console.error("Không thể thiết lập cơ sở dữ liệu:", err);
     throw err; // Rethrow error to prevent app from continuing

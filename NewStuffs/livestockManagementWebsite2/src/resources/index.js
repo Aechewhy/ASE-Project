@@ -20,8 +20,9 @@ app.engine(
       ifEquals: function (a, b, options) {
         return a === b ? options.fn(this) : options.inverse(this);
       },
+      sum: (a, b) => a + b,
     },
-  })
+  }),
 );
 
 app.set("view engine", "hbs");

@@ -5,11 +5,12 @@ class Certificate extends Model {}
 
 Certificate.init(
   {
-    id: { type: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     name: { type: DataTypes.STRING(100) },
     certificate_facility_id: {
