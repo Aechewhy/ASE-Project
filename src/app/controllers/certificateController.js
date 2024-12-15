@@ -71,11 +71,11 @@ class CertificateController {
     const facilityId = parseInt(certificate_facility_id, 10); // base 10
 
     // Kiểm tra dữ liệu
-    if (!certificateId || !name || !facilityId) {
+    if (!certificateId || !name) {
       return res
         .status(400)
         .send(
-          "ID, tên của chứng chỉ và ID của cơ sở chứng nhận không được để trống.",
+          "ID và tên của chứng chỉ không được để trống.",
         );
     }
 
@@ -140,8 +140,10 @@ class CertificateController {
 }
 
   //[DELETE] /certificate/:id
-  delete(req, res, next) {
-
+  destroy(req, res, next) {
+    Certificate.destroy({ where: { id: req.params.id } })
+        .then(() => res.redirect('./'))
+        .catch(next);
   }
 
 }

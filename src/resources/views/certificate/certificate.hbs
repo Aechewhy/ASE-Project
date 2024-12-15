@@ -20,8 +20,8 @@
           <a href="/certificate/{{this.id}}/edit">
             <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
           </a>
-          <a>
-            <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#deleteCertificateModal">Xoá</button>
+          <a href="#">
+            <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-certificate-modal">Xoá</button>
           </a>
         </div>
       </td>
@@ -31,7 +31,7 @@
 </table>
 
 {{!-- Confirm xoá --}}
-<div class="modal fade" id="deleteCertificateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete-certificate-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -44,9 +44,31 @@
         Bạn chắc chắn muốn xoá chứng chỉ này chứ ?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger">Xoá</button>
+        <button id="btn-delete-certificate" type="button" class="btn btn-danger">Xoá bỏ</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
       </div>
     </div>
   </div>
+  <form name="delete-certificate-form" method="POST" ></form>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  var deleteButton = document.getElementById('btn-delete-certificate');
+  var deleteForm = document.forms['delete-certificate-form'];
+  
+  // Sử dụng jQuery để quản lý modal
+  $('#delete-certificate-modal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var itemId = button.data('id');
+    
+    // Ngăn chặn việc submit mặc định
+    deleteButton.addEventListener('click', function(e) {
+      e.preventDefault(); // Ngăn submit mặc định
+      deleteForm.action = `/certificate/${itemId}?_method=DELETE`;
+      deleteForm.submit();
+    });
+  });
+});
+
+</script>
