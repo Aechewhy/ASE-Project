@@ -1,8 +1,9 @@
 
-<table class="table table-bordered table-hover">
+<h1 class="mt-4">Danh sách chứng chỉ</h1>
+<table class="table table-bordered table-hover mt-4">
   <thead>
     <tr>
-      <th scope="col">ID chứng chỉ</th>
+      <th scope="col">STT</th>
       <th scope="col">Tên chứng chỉ</th>
       <th scope="col">Thao tác</th>
     </tr>
@@ -10,7 +11,7 @@
   <tbody>
     {{#each certificate}}
     <tr>
-      <td>{{this.id}}</td>
+      <td>{{inc @index}}</td>
       <td>{{this.name}}</td>
       <td>
         <div class="btn-group" role="group">

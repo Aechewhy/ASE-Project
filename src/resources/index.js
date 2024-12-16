@@ -21,6 +21,9 @@ app.engine(
         return a === b ? options.fn(this) : options.inverse(this);
       },
       sum: (a, b) => a + b,
+      inc: function (value, options) {
+        return parseInt(value) + 1;
+      }
     },
   }),
 );

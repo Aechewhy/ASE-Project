@@ -1,5 +1,9 @@
 const { CertificateFacility } = require("../models");
-const { sequelizeToObject } = require("../../util/mysql");
+const { Certificate } = require("../models");
+const { sequelizeToObject,
+        mutipleSequelizeToObject
+      } = require("../../util/mysql");
+const { Op } = require("sequelize");
 
 class CertificateFacilityController {
   // GET /certificateFacility
@@ -33,6 +37,89 @@ class CertificateFacilityController {
       return next(err);
     }
   }
+
+  // [GET] /certificateFacility/:id
+  detail(req, res, next) {
+    CertificateFacility.findOne({
+      where: { id: req.params.id },
+      include: [
+        {
+          association: CertificateFacility.associations.certificates,
+        },
+      ],
+    })
+      .then((certificateFacility) => {
+        res.render("./certificateFacility/detail", {
+          certificateFacility: sequelizeToObject(certificateFacility),
+        });
+      })
+      .catch(next);
+  }
+    
+  //[GET] /certificateFacility/create
+  create(req, res, next) {
+    res.render("./certificateFacility/create");
+  }
+
+  //[POST] /certificate/store
+  store(req, res, next) {
+    // Lấy dữ liệu từ body
+    const { id, name} = req.body;
+
+    // Chuyển đổi id sang số nguyên
+    const certificateFacilityId = parseInt(id, 10); // base 10
+
+    // Kiểm tra dữ liệu
+    if (!certificateFacilityId || !name) {
+      return res
+        .status(400)
+        .send(
+          "ID và tên không được để trống.",
+        );
+    }
+
+    CertificateFacility.create({
+      id: certificateFacilityId,
+      name,
+    })
+      .then(() => res.redirect("./"))
+      .catch((error) => {
+        console.error("Full Error Object:", error);
+        console.error("Error Name:", error.name);
+        console.error("Error Message:", error.message);
+        next(error);
+      });
+  }
+
+  // [GET] /certificateFacility/:id/edit
+  edit(req, res, next) {
+    Certificate.findAll({
+      attributes: ["id", "name"], // Chỉ lấy id và name
+    })
+    .then((certificates) => {
+      return CertificateFacility.findOne({
+        where: { id: req.params.id },
+        include: [
+          {
+            model: Certificate,
+            as: "certificates", // Đảm bảo alias đúng
+          },
+        ],
+      }).then((certificateFacility) => {
+        res.render("./certificateFacility/edit", {
+          certificateFacility: sequelizeToObject(certificateFacility),
+          certificates: mutipleSequelizeToObject(certificates),
+        });
+      });
+    })
+    .catch(next);
+  }
+
+// [PUT] /certificateFacility/:id
+  update(req, res, next) {
+  
+  }
+
 }
 
 module.exports = new CertificateFacilityController();
