@@ -1,0 +1,25 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID cơ quan chứng nhận</th>
+      <th scope="col">Chứng chỉ cung cấp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{certificateFacility.id}}</td>
+      <td>
+        {{#if certificateFacility.certificates}}
+            {{#each certificateFacility.certificates}}
+              - {{this.name}}
+              {{#unless @last}}
+                <br />
+              {{/unless}}
+            {{/each}}
+        {{else}}
+          Không có chứng chỉ nào
+        {{/if}}
+      </td>
+    </tr>
+  </tbody>
+</table>
