@@ -1,75 +1,98 @@
+<div class="row mb-3 mt-4">
+    <div class="col-md-6">
+        <input type="text" id="search-input" class="form-control" placeholder="Tìm kiếm chứng chỉ...">
+    </div>
+</div>
 
-<h1 class="mt-4">Danh sách chứng chỉ</h1>
-<table class="table table-bordered table-hover mt-4">
-  <thead>
+<table class="table table-bordered table-hover">
+    <thead>
     <tr>
-      <th scope="col">STT</th>
-      <th scope="col">Tên chứng chỉ</th>
-      <th scope="col">Thao tác</th>
+        <th scope="col">STT</th>
+        <th scope="col">ID chứng chỉ</th>
+        <th scope="col">Tên chứng chỉ</th>
+        <th scope="col">Thao tác</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     {{#each certificate}}
-    <tr>
-      <td>{{inc @index}}</td>
-      <td>{{this.name}}</td>
-      <td>
-        <div class="btn-group" role="group">
-          <a href="/certificate/{{this.id}}">
-            <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
-          </a>
-          <a href="/certificate/{{this.id}}/edit">
-            <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
-          </a>
-          <a href="#">
-            <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-certificate-modal">Xoá</button>
-          </a>
-        </div>
-      </td>
-    </tr>
+        <tr>
+            <td>{{inc @index}}</td>
+            <td>{{this.id}}</td>
+            <td>{{this.name}}</td>
+            <td>
+                <div class="btn-group" role="group">
+                    <a href="/certificate/{{this.id}}">
+                        <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
+                    </a>
+                    <a href="/certificate/{{this.id}}/edit">
+                        <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
+                    </a>
+                    <a href="#">
+                        <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-certificate-modal">Xoá</button>
+                    </a>
+                </div>
+            </td>
+        </tr>
     {{/each}}
-  </tbody>
+    </tbody>
 </table>
 
-{{!-- Confirm xoá --}}
 <div class="modal fade" id="delete-certificate-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Xoá chứng chỉ</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Bạn chắc chắn muốn xoá chứng chỉ này chứ ?
-      </div>
-      <div class="modal-footer">
-        <button id="btn-delete-certificate" type="button" class="btn btn-danger">Xoá bỏ</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xoá chứng chỉ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn chắc chắn muốn xoá chứng chỉ này chứ ?
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-certificate" type="button" class="btn btn-danger">Xoá bỏ</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+            </div>
+        </div>
+        <form name="delete-certificate-form" method="POST"></form>
     </div>
-  </div>
-  <form name="delete-certificate-form" method="POST" ></form>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-  var deleteButton = document.getElementById('btn-delete-certificate');
-  var deleteForm = document.forms['delete-certificate-form'];
-  
-  // Sử dụng jQuery để quản lý modal
-  $('#delete-certificate-modal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    var itemId = button.data('id');
-    
-    // Ngăn chặn việc submit mặc định
-    deleteButton.addEventListener('click', function(e) {
-      e.preventDefault(); // Ngăn submit mặc định
-      deleteForm.action = `/certificate/${itemId}?_method=DELETE`;
-      deleteForm.submit();
-    });
-  });
-});
+    document.addEventListener('DOMContentLoaded', function () {
+        var deleteButton = document.getElementById('btn-delete-certificate');
+        var deleteForm = document.forms['delete-certificate-form'];
 
+        $('#delete-certificate-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var itemId = button.data('id');
+
+            deleteButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                deleteForm.action = `/certificate/${itemId}?_method=DELETE`;
+                deleteForm.submit();
+            });
+        });
+
+        var searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('keyup', function() {
+            var filter = searchInput.value.toLowerCase();
+            var table = document.querySelector('table tbody');
+            var rows = table.getElementsByTagName('tr');
+
+            for (var i = 0; i < rows.length; i++) {
+                var idCell = rows[i].getElementsByTagName('td')[0];
+                var nameCell = rows[i].getElementsByTagName('td')[1];
+                if (idCell && nameCell) {
+                    var idText = idCell.textContent || idCell.innerText;
+                    var nameText = nameCell.textContent || nameCell.innerText;
+                    if (idText.toLowerCase().indexOf(filter) > -1 || nameText.toLowerCase().indexOf(filter) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        });
+    });
 </script>
