@@ -1,59 +1,36 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Raising Facility List</title>
-  <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
-</head>
-<body>
-  <h1>Raising Facility List</h1>
-  <table>
+
+  <h1 class="mt-4">Danh sách cơ sở chăn nuôi</h1>
+  <table class="table table-bordered table-hover mt-4">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Livestock Type</th>
-        <th>Owner</th>
-        <th>Location</th>
-        <th>Size</th>
-        <th>Employee Number</th>
-        <th>Certificate</th>
+        <th>STT</th>
+        <th>ID cơ quan</th>
+        <th>Tên cơ quan</th>
+        <th>Thao tác</th>
       </tr>
     </thead>
     <tbody>
       {{#each raisingFacility}}
       <tr>
+        <td>{{inc @index}}</td>
         <td>{{this.id}}</td>
         <td>{{this.name}}</td>
-        <td>{{this.livestock_type}}</td>
-        <td>{{this.owner}}</td>
-        <td>{{this.location}}</td>
-        <td>{{this.size}}</td>
-        <td>{{this.employee_number}}</td>
-        <td>{{#each certificate}} - {{this.id}}
-          {{#unless @last}}
-          <br />
-          {{/unless}}
-        {{/each}}
+        <td>
+          <div class="btn-group" role="group">
+            <a href="/raisingFacility/{{this.id}}">
+              <button type="button" class="btn btn-secondary mr-1">Chi tiết</button>
+            </a>
+            <a href="/raisingFacility/{{this.id}}/edit">
+             <button type="button" class="btn btn-secondary mr-1">Chỉnh sửa</button>
+            </a>
+            <a href="#">
+              <button type="button" class="btn btn-secondary">Xoá</button>
+            </a>
+          </div>
         </td>
       </tr>
       {{/each}}
     </tbody>
   </table>
-</body>
-</html>
+

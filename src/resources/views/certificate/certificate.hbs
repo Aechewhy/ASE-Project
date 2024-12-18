@@ -81,12 +81,12 @@
             var rows = table.getElementsByTagName('tr');
 
             for (var i = 0; i < rows.length; i++) {
-                var idCell = rows[i].getElementsByTagName('td')[0];
-                var nameCell = rows[i].getElementsByTagName('td')[1];
+                var idCell = rows[i].getElementsByTagName('td')[1];
+                var nameCell = rows[i].getElementsByTagName('td')[2];
                 if (idCell && nameCell) {
                     var idText = idCell.textContent || idCell.innerText;
                     var nameText = nameCell.textContent || nameCell.innerText;
-                    if (idText.toLowerCase().indexOf(filter) > -1 || nameText.toLowerCase().indexOf(filter) > -1) {
+                    if ( idText.toLowerCase().indexOf(filter) > -1 || nameText.toLowerCase().indexOf(filter) > -1) {
                         rows[i].style.display = "";
                     } else {
                         rows[i].style.display = "none";
