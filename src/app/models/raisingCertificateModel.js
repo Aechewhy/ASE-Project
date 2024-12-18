@@ -1,13 +1,21 @@
 const { DataTypes, Model } = require("sequelize");
 const { sequelize } = require("../../config/database");
 
-class RaisingCertificate extends Model {}
-
-RaisingCertificate.init(
+const RaisingCertificate = sequelize.define(
+  'RaisingCertificate',
   {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    raising_facility_id: { type: DataTypes.INTEGER },
-    certificate_id: { type: DataTypes.INTEGER },
+    raising_facility_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      references: { model: "raising_facility", key: "id" },
+    },
+    certificate_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      references: { model: "certificate", key: "id" },
+    },
   },
   {
     sequelize,

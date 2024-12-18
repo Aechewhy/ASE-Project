@@ -1,29 +1,26 @@
-//
 
-const { DataTypes, Model } = require("sequelize");
+const { DataTypes, Model, STRING } = require("sequelize");
 const { sequelize } = require("../../config/database");
-const Certificate = require("./certificateModel");
 
-class CertificateFacility extends Model {}
+class RaisingFacility extends Model {}
 
-CertificateFacility.init(
+RaisingFacility.init(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING(100) },
+    livestock_type: { type: DataTypes.STRING(100) },
+    owner: { type: DataTypes.STRING(100) },
+    location: { type: DataTypes.STRING(100) },
+    size: { type: DataTypes.STRING(100) },
+    employee_number: { type: DataTypes.INTEGER },
   },
   {
     sequelize,
-    modelName: "certificate_facility",
-    tableName: "certificate_facility",
+    modelName: "raising_facility",
+    tableName: "raising_facility",
     timestamps: false,
     logging: false,
   },
 );
 
-// Định nghĩa quan hệ
-CertificateFacility.hasMany(Certificate, {
-  foreignKey: "certificate_facility_id",
-  as: "certificates", // Alias dùng để truy vấn
-});
-
-module.exports = CertificateFacility;
+module.exports = RaisingFacility;

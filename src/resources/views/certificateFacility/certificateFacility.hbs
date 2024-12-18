@@ -23,7 +23,7 @@
              <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
             </a>
             <a href="#">
-              <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-certificate-facility-modal">Xoá</button>
+              <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-certificateFacility-modal">Xoá</button>
             </a>
           </div>
         </td>
@@ -32,3 +32,62 @@
     </tbody>
   </table>
 
+<div class="modal fade" id="delete-certificateFacility-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xoá chứng chỉ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn chắc chắn muốn xoá cơ sở này chứ ?
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-certificateFacility" type="button" class="btn btn-danger">Xoá bỏ</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+            </div>
+        </div>
+        <form name="delete-certificateFacility-form" method="POST"></form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var deleteButton = document.getElementById('btn-delete-certificateFacility');
+        var deleteForm = document.forms['delete-certificateFacility-form'];
+
+        $('#delete-certificateFacility-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var itemId = button.data('id');
+
+            deleteButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                deleteForm.action = `/certificateFacility/${itemId}?_method=DELETE`;
+                deleteForm.submit();
+            });
+        });
+
+        var searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('keyup', function() {
+            var filter = searchInput.value.toLowerCase();
+            var table = document.querySelector('table tbody');
+            var rows = table.getElementsByTagName('tr');
+
+            for (var i = 0; i < rows.length; i++) {
+                var idCell = rows[i].getElementsByTagName('td')[1];
+                var nameCell = rows[i].getElementsByTagName('td')[2];
+                if (idCell && nameCell) {
+                    var idText = idCell.textContent || idCell.innerText;
+                    var nameText = nameCell.textContent || nameCell.innerText;
+                    if ( idText.toLowerCase().indexOf(filter) > -1 || nameText.toLowerCase().indexOf(filter) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        });
+    });
+</script>
