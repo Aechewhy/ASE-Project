@@ -1,0 +1,28 @@
+<h3 class="mt-4">Thêm sản phẩm</h3>
+
+<div class="mt-4">
+    <form method="POST" action="/wasteTreatmentProduct/store">
+        <div class="form-group">
+            <label for="id">ID của sản phẩm</label>
+            <input type="text" class="form-control" id="id" name="id">
+        </div>
+        <div class="form-group">
+            <label for="name">Tên sản phẩm</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="price">Đơn giá</label>
+            <input type="text" class="form-control" id="price" name="price">
+
+        </div>
+        <div>
+            <label for="waste_treatment_facility">Cơ sở sản xuất</label>
+            <select class="form-control" name="waste_treatment_facility">
+                {{#each wasteTreatmentFacility}}
+                <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Thêm</button>
+    </form>
+</div>

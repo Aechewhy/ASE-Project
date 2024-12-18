@@ -1,6 +1,8 @@
 const CertificateFacility = require("./certificateFacilityModel");
 const Certificate = require("./certificateModel");
 const RaisingFacility = require("./raisingFacilityModel");
+const WasteTreatmentFacility = require("./wasteTreatmentFacilityModel");
+const WasteTreatmentProduct = require("./wasteTreatmentProductModel");
 
 // Định nghĩa quan hệ
 CertificateFacility.hasMany(Certificate, {
@@ -26,8 +28,19 @@ Certificate.belongsToMany(RaisingFacility, {
   otherKey: 'raising_facility_id',
 });
 
+WasteTreatmentFacility.hasMany(WasteTreatmentProduct, {
+  foreignKey: "facility_id",
+  as: "wasteTreatmentProduct",
+});
+WasteTreatmentProduct.belongsTo(WasteTreatmentFacility, {
+  foreignKey: "facility_id",
+  as: "wasteTreatmentFacility",
+});
+
 module.exports = {
   CertificateFacility,
   Certificate,
   RaisingFacility,
+  WasteTreatmentFacility,
+  WasteTreatmentProduct,
 };

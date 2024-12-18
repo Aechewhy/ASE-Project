@@ -1,0 +1,15 @@
+<h3 class="mt-4">Cập nhật cơ quan</h3>
+
+<div class="mt-4">
+    <form method="POST" action="/wasteTreatmentFacility/{{wasteTreatmentFacility.id}}?_method=PUT">
+        <div class="form-group">
+            <label for="name">Tên cơ quan</label>
+            <input type="text" class="form-control" value="{{wasteTreatmentFacility.name}}" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="name">Địa chỉ</label>
+            <input type="text" class="form-control" value="{{wasteTreatmentFacility.location}}" id="location" name="location">
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Lưu</button>
+    </form>
+</div>

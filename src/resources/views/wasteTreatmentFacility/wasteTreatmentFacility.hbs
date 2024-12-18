@@ -1,0 +1,101 @@
+<div class="row mb-3 mt-4">
+    <div class="col-md-6">
+        <input type="text" id="search-input" class="form-control" placeholder="Tìm kiếm cơ sở xử lý chất thải...">
+    </div>
+</div>
+
+  <h1 class="mt-4">Danh sách cơ quan</h1>
+  <table class="table table-bordered table-hover mt-4">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>ID cơ quan</th>
+        <th>Tên cơ quan</th>
+        <th>Vị trí</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each wasteTreatmentFacility}}
+      <tr>
+        <td>{{inc @index}}</td>
+        <td>{{this.id}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.location}}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <a href="/wasteTreatmentFacility/{{this.id}}">
+              <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
+            </a>
+            <a href="/wasteTreatmentFacility/{{this.id}}/edit">
+             <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
+            </a>
+            <a href="#">
+              <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-wasteTreatmentFacility-modal">Xoá</button>
+            </a>
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+<div class="modal fade" id="delete-wasteTreatmentFacility-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xoá chứng chỉ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn chắc chắn muốn xoá cơ sở này chứ ?
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-wasteTreatmentFacility" type="button" class="btn btn-danger">Xoá bỏ</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+            </div>
+        </div>
+        <form name="delete-wasteTreatmentFacility-form" method="POST"></form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var deleteButton = document.getElementById('btn-delete-wasteTreatmentFacility');
+        var deleteForm = document.forms['delete-wasteTreatmentFacility-form'];
+
+        $('#delete-wasteTreatmentFacility-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var itemId = button.data('id');
+
+            deleteButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                deleteForm.action = `/wasteTreatmentFacility/${itemId}?_method=DELETE`;
+                deleteForm.submit();
+            });
+        });
+
+        var searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('keyup', function() {
+            var filter = searchInput.value.toLowerCase();
+            var table = document.querySelector('table tbody');
+            var rows = table.getElementsByTagName('tr');
+
+            for (var i = 0; i < rows.length; i++) {
+                var idCell = rows[i].getElementsByTagName('td')[1];
+                var nameCell = rows[i].getElementsByTagName('td')[2];
+                if (idCell && nameCell) {
+                    var idText = idCell.textContent || idCell.innerText;
+                    var nameText = nameCell.textContent || nameCell.innerText;
+                    if ( idText.toLowerCase().indexOf(filter) > -1 || nameText.toLowerCase().indexOf(filter) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        });
+    });
+</script>

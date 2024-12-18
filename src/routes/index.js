@@ -5,8 +5,15 @@ const loginRouter = require("./loginRoutes");
 const raisingFacilityRouter = require("./raisingFacilityRoutes");
 const certificateRouter = require("./certificateRoutes");
 const certificateFacilityRouter = require("./certificateFacilityRoutes");
+const wasteTreatmentFacilityRouter = require("./wasteTreatmentFacilityRoutes");
+const wasteTreatmentProductRouter = require("./wasteTreatmentProductRoutes");
 
 function route(app) {
+
+  app.use("/wasteTreatmentProduct", wasteTreatmentProductRouter);
+
+  app.use("/wasteTreatmentFacility", wasteTreatmentFacilityRouter);
+
   app.use("/certificate", certificateRouter);
 
   app.use("/certificateFacility", certificateFacilityRouter);
