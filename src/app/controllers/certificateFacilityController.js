@@ -99,12 +99,6 @@ class CertificateFacilityController {
     .then((certificates) => {
       return CertificateFacility.findOne({
         where: { id: req.params.id },
-        include: [
-          {
-            model: Certificate,
-            as: "certificates", // Đảm bảo alias đúng
-          },
-        ],
       }).then((certificateFacility) => {
         res.render("./certificateFacility/edit", {
           certificateFacility: sequelizeToObject(certificateFacility),
@@ -115,9 +109,35 @@ class CertificateFacilityController {
     .catch(next);
   }
 
-// [PUT] /certificateFacility/:id
+  //[PUT] /certificateFacility/:id
   update(req, res, next) {
-  
+    // Lấy dữ liệu từ body và params
+    const { name } = req.body;
+    const certificateFacilityId = parseInt(req.params.id, 10); // Sử dụng id từ URL params
+
+    // Kiểm tra dữ liệu đầu vào
+    if ( !certificateFacilityId || !name ) {
+        return res.status(400).json({
+            message: "ID và tên không được để trống."
+        });
+    }
+
+  // Thực hiện cập nhật với điều kiện where rõ ràng
+  CertificateFacility.update(
+      {name},
+      {
+          where: { id: certificateFacilityId } // Điều kiện where
+      }
+  )
+  .then(() => res.redirect("./"))
+  .catch(next)
+  }
+
+  //[DELETE] /certificate/:id
+  destroy(req, res, next) {
+    CertificateFacility.destroy({ where: { id: req.params.id } })
+        .then(() => res.redirect('./'))
+        .catch(next);
   }
 
 }

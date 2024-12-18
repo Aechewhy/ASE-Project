@@ -4,6 +4,9 @@ const sequelize = new Sequelize("livestock", "root", "admin", {
   host: "localhost",
   dialect: "mysql",
   logging: false, // Disable logging
+  define: {
+    timestamps: false
+  }
 });
 
 async function initializeDatabase() {
