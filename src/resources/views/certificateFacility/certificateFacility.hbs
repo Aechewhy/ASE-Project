@@ -1,0 +1,34 @@
+
+
+  <h1 class="mt-4">Danh sách cơ quan chứng nhận</h1>
+  <table class="table table-bordered table-hover mt-4">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Tên cơ quan</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each certificateFacility}}
+      <tr>
+        <td>{{inc @index}}</td>
+        <td>{{this.name}}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <a href="/certificateFacility/{{this.id}}">
+              <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
+            </a>
+            <a href="/certificateFacility/{{this.id}}/edit">
+             <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
+            </a>
+            <a href="#">
+              <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-certificate-facility-modal">Xoá</button>
+            </a>
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
