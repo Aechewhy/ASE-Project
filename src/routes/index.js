@@ -7,9 +7,13 @@ const certificateRouter = require("./certificateRoutes");
 const certificateFacilityRouter = require("./certificateFacilityRoutes");
 const wasteTreatmentFacilityRouter = require("./wasteTreatmentFacilityRoutes");
 const wasteTreatmentProductRouter = require("./wasteTreatmentProductRoutes");
+const processingFacilityRouter = require("./processingFacilityRoutes");
+
 
 function route(app) {
 
+  app.use("/processingFacility", processingFacilityRouter);
+  
   app.use("/wasteTreatmentProduct", wasteTreatmentProductRouter);
 
   app.use("/wasteTreatmentFacility", wasteTreatmentFacilityRouter);

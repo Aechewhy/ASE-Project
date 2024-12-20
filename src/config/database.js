@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize("livestock", "root", "admin", {
+const sequelize = new Sequelize("livestock", "root", "12345678", {
   host: "localhost",
   dialect: "mysql",
   logging: false, // Disable logging
@@ -12,7 +12,7 @@ const sequelize = new Sequelize("livestock", "root", "admin", {
 async function initializeDatabase() {
   try {
     await sequelize.authenticate();
-    console.log("Kết nối thành công đến cơ sở dữ liệu.");
+    console.log("Kết nối thành công đến cơ sở dữ liệu."); 
 
     await sequelize.sync({ alter: true });
     console.log("Đồng bộ hóa thành công cơ sở dữ liệu.");
