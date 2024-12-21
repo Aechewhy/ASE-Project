@@ -1,100 +1,61 @@
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center">
-    <h1>Quản lý cơ sở thú y</h1>
-    <div>
-      <button id="toggle-list" class="btn btn-secondary">Danh mục</button>
-      <button id="toggle-create" class="btn btn-primary">Tạo mới</button>
+<h1 class="mt-4">Danh sách cơ sở thú y</h1>
+<table class="table table-bordered table-hover mt-4">
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>id</th>
+      <th>Tên cơ sở</th>
+      <th>Địa chỉ</th>
+      <th>Số điện thoại</th>
+      <th>Giờ mở cửa</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each vetPharmacy}}
+    <tr>
+      <td>{{inc @index}}</td>
+      <td>{{this.id}}</td>
+      <td>{{this.name}}</td>
+      <td>{{this.location}}</td>
+      <td>{{this.contact_number}}</td>
+      <td>{{this.opening_hours}}</td>
+      <td>
+        <div class="btn-group" role="group">
+          <a href="/vetPharmacy/{{this.id}}">
+            <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
+          </a>
+          <a href="/vetPharmacy/{{this.id}}/edit">
+            <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
+          </a>
+          <a href="#">
+            <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-vetPharmacy-modal">Xoá</button>
+          </a>
+        </div>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<div class="modal fade" id="delete-vetPharmacy-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xoá cơ sở thú y</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn chắc chắn muốn xoá cơ sở này chứ ?
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-vetPharmacy" type="button" class="btn btn-danger">Xoá bỏ</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+      </div>
     </div>
-  </div>
-
-  <div id="list-section" class="mt-4">
-    <h2>Danh sách cơ sở thú y</h2>
-    <table class="table table-bordered table-hover mt-4">
-      <thead>
-        <tr>
-          <th>STT</th>
-          <th>id</th>
-          <th>Tên cơ sở</th>
-          <th>Địa chỉ</th>
-          <th>Số điện thoại</th>
-          <th>Giờ mở cửa</th>
-          <th>Thao tác</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each vetPharmacy}}
-        <tr>
-          <td>{{inc @index}}</td>
-          <td>{{this.id}}</td>
-          <td>{{this.name}}</td>
-          <td>{{this.location}}</td>
-          <td>{{this.contact_number}}</td>
-          <td>{{this.opening_hours}}</td>
-          <td>
-            <div class="btn-group" role="group">
-              <a href="/vetPharmacy/{{this.id}}">
-                <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
-              </a>
-              <a href="/vetPharmacy/{{this.id}}/edit">
-                <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
-              </a>
-              <a href="#">
-                <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-vetPharmacy-modal">Xoá</button>
-              </a>
-            </div>
-          </td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-
-  <div id="create-section" class="mt-4" style="display: none;">
-    <h2>Thêm cơ sở thú y</h2>
-    <form method="POST" action="/vetPharmacy/store">
-      <div class="form-group">
-        <label for="id">ID cơ sở</label>
-        <input type="text" class="form-control" id="id" name="id">
-      </div>
-      <div class="form-group">
-        <label for="name">Tên cơ sở</label>
-        <input type="text" class="form-control" id="name" name="name">
-      </div>
-      <div class="form-group">
-        <label for="location">Địa chỉ</label>
-        <input type="text" class="form-control" id="location" name="location">
-      </div>
-      <div class="form-group">
-        <label for="contact_number">Số điện thoại</label>
-        <input type="text" class="form-control" id="contact_number" name="contact_number">
-      </div>
-      <div class="form-group">
-        <label for="opening_hours">Giờ mở cửa</label>
-        <input type="text" class="form-control" id="opening_hours" name="opening_hours">
-      </div>
-      <button type="submit" class="btn btn-primary mt-4">Thêm</button>
-    </form>
-  </div>
-
-  <div class="modal fade" id="delete-vetPharmacy-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Xoá cơ sở thú y</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Bạn chắc chắn muốn xoá cơ sở này chứ ?
-        </div>
-        <div class="modal-footer">
-          <button id="btn-delete-vetPharmacy" type="button" class="btn btn-danger">Xoá bỏ</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-        </div>
-      </div>
-      <form name="delete-vetPharmacy-form" method="POST"></form>
-    </div>
+    <form name="delete-vetPharmacy-form" method="POST"></form>
   </div>
 </div>
 
@@ -133,16 +94,6 @@
           }
         }
       }
-    });
-
-    document.getElementById('toggle-list').addEventListener('click', function() {
-      document.getElementById('list-section').style.display = 'block';
-      document.getElementById('create-section').style.display = 'none';
-    });
-
-    document.getElementById('toggle-create').addEventListener('click', function() {
-      document.getElementById('list-section').style.display = 'none';
-      document.getElementById('create-section').style.display = 'block';
     });
   });
 </script>
