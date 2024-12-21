@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "nodejs_prj",
   "version": "1.0.0",
   "description": "",
@@ -18,6 +19,33 @@
   "devDependencies": {
     "morgan": "^1.10.0",
     "nodemon": "^3.1.7",
+=======
+  "name": "startingblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "beautiful": "prettier --write src/**/*.js",
+    "watch": "sass --watch src/resources/scss/app.scss:src/public/css/app.css",
+    "start": "nodemon src/resources/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "June",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "express-handlebars": "^6.0.7",
+    "express-session": "^1.18.1",
+    "method-override": "^3.0.0",
+    "mysql2": "^3.11.5",
+    "path": "^0.12.7",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "prettier": "^3.4.1",
+>>>>>>> main
     "sass": "^1.81.0"
   }
 }

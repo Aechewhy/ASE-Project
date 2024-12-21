@@ -1,0 +1,35 @@
+<h3 class="mt-4">Thêm chứng chỉ</h3>
+
+<div class="mt-4">
+    <form method="POST" action="/processingFacility/store">
+        <div class="form-group">
+            <label for="id">ID của chứng chỉ</label>
+            <input type="text" class="form-control" id="id" name="id">
+        </div>
+        <div class="form-group">
+            <label for="name">Tên chứng chỉ</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="name">địa điểm</label>
+            <input type="text" class="form-control" id="location" name="location">
+        </div>
+        <div class="form-group">
+            <label for="name">chủ sở hữu</label>
+            <input type="text" class="form-control" id="owner" name="owner">
+        </div>
+        <div class="form-group">
+            <label for="name">thể loại</label>
+            <input type="text" class="form-control" id="type" name="type">
+        </div>
+        <div>
+            <label for="raising_facility_id">Cơ sở chăn nuôi</label>
+            <select class="form-control" name="raising_facility_id">
+                {{#each raisingFacility}}
+                <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Thêm</button>
+    </form>
+</div>

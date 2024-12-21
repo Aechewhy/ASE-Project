@@ -1,0 +1,25 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID cơ sở chăn nuôi</th>
+      <th scope="col">Chứng chỉ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{raisingFacility.id}}</td>
+      <td>
+        {{#if raisingFacility.certificates}}
+            {{#each raisingFacility.certificates}}
+              - {{this.name}}
+              {{#unless @last}}
+                <br />
+              {{/unless}}
+            {{/each}}
+        {{else}}
+          Không có chứng chỉ nào
+        {{/if}}
+      </td>
+    </tr>
+  </tbody>
+</table>

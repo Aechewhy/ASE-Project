@@ -1,0 +1,20 @@
+<h3 class="mt-4">Cập nhật chứng chỉ</h3>
+
+<div class="mt-4">
+    <form method="POST" action="/certificate/{{certificate.id}}?_method=PUT">
+        <div class="form-group">
+            <label for="name">Tên chứng chỉ</label>
+            <input type="text" class="form-control" value="{{certificate.name}}" id="name" name="name">
+        </div>
+        
+        <label for="certificate_facility_id">Tên cơ quan chứng nhận</label>
+        <select class="form-control" name="certificate_facility_id">
+            {{#each certificateFacility}}
+            <option value="{{this.id}}" {{#ifEquals this.id ../certificate.certificate_facility_id}}selected{{/ifEquals}}>
+                {{this.name}}
+            </option>
+            {{/each}}
+        </select>
+        <button type="submit" class="btn btn-primary mt-4">Lưu</button>
+    </form>
+</div>

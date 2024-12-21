@@ -1,0 +1,36 @@
+
+
+  <h1 class="mt-4">Danh sách cơ sở chăn nuôi</h1>
+  <table class="table table-bordered table-hover mt-4">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>ID cơ quan</th>
+        <th>Tên cơ quan</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each raisingFacility}}
+      <tr>
+        <td>{{inc @index}}</td>
+        <td>{{this.id}}</td>
+        <td>{{this.name}}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <a href="/raisingFacility/{{this.id}}">
+              <button type="button" class="btn btn-secondary mr-1">Chi tiết</button>
+            </a>
+            <a href="/raisingFacility/{{this.id}}/edit">
+             <button type="button" class="btn btn-secondary mr-1">Chỉnh sửa</button>
+            </a>
+            <a href="#">
+              <button type="button" class="btn btn-secondary">Xoá</button>
+            </a>
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+

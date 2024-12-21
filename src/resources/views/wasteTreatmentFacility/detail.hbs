@@ -1,0 +1,29 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID cơ sở</th>
+      <th scope="col">Tên</th>
+      <th scope="col">Địa điểm</th>
+      <th scope="col">Sản phẩm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{wasteTreatmentFacility.id}}</td>
+      <td>{{wasteTreatmentFacility.name}}</td>
+      <td>{{wasteTreatmentFacility.location}}</td>
+      <td>
+        {{#if wasteTreatmentFacility.wasteTreatmentProduct}}
+            {{#each wasteTreatmentFacility.wasteTreatmentProduct}}
+              - {{this.name}}
+              {{#unless @last}}
+                <br />
+              {{/unless}}
+            {{/each}}
+        {{else}}
+          Không có sản phẩm nào
+        {{/if}}
+      </td>
+    </tr>
+  </tbody>
+</table>
