@@ -1,0 +1,20 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID cơ sở kiểm tra</th>
+      <th scope="col">Tên cơ sở</th>
+      <th scope="col">Địa chỉ</th>
+      <th scope="col">Cơ sở xử lý chất thải</th>
+      <th scope="col">Sản phẩm xử lý chất thải</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{testingFacility.id}}</td>
+      <td>{{testingFacility.name}}</td>
+      <td>{{testingFacility.location}}</td>
+      <td>{{testingFacility.wasteTreatmentFacility.name}}</td>
+      <td>{{testingFacility.wasteTreatmentProduct.name}}</td>
+    </tr>
+  </tbody>
+</table>

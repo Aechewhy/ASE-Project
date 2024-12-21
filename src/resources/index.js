@@ -8,6 +8,12 @@ const route = require("../routes/index");
 const session = require("express-session");
 const User = require("../app/models/userModel"); //Sử dụng model User để test kết nối với database
 
+// Import testingFacility routes
+const testingFacilityRoutes = require("../routes/testingFacilityRoutes");
+
+// Import vetPharmacy routes
+const vetPharmacyRoutes = require("../routes/vetPharmacyRoutes");
+
 //Cài đặt file tĩnh
 app.use(express.static(path.join(__dirname, "../public")));
 
@@ -74,6 +80,12 @@ app.post("/login", (req, res) => {
 app.get("/", isAuthenticated, (req, res) => {
   res.render("home", { admin: true }); // Pass admin variable for testing
 });
+
+// Use testingFacility routes
+app.use("/testingFacility", testingFacilityRoutes);
+
+// Use vetPharmacy routes
+app.use("/vetPharmacy", vetPharmacyRoutes);
 
 route(app);
 
