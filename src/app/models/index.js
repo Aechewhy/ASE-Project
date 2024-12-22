@@ -61,7 +61,7 @@ VetFacility.hasMany(DisposalFacility, {
 });
 DisposalFacility.belongsTo(VetFacility, {
   foreignKey: "vet_facility_id",
-  as: "VetFacility",
+  as: "vetFacility",
 });
 
 module.exports = {

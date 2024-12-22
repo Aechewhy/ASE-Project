@@ -120,7 +120,7 @@ class DisposalFacilityController {
   //[PUT] /certificate/:id
   update(req, res, next) {
     // Lấy dữ liệu từ body và params
-    const { name, location, contact_number, capacity, vet_facility } = req.body;
+    const { name, location, contact_number, capacity, vet_facility_id } = req.body;
     const disposalId = parseInt(req.params.id, 10); // Sử dụng id từ URL params
 
     // Kiểm tra dữ liệu đầu vào
@@ -137,7 +137,7 @@ class DisposalFacilityController {
           location,
           contact_number,
           capacity,
-          vet_facility
+          vet_facility_id
       },
       {
           where: { id: disposalId } // Điều kiện where
@@ -149,7 +149,7 @@ class DisposalFacilityController {
 
   //[DELETE] /certificate/:id
   destroy(req, res, next) {
-    WasteTreatmentProduct.destroy({ where: { id: req.params.id } })
+    DisposalFacility.destroy({ where: { id: req.params.id } })
         .then(() => res.redirect('./'))
         .catch(next);
   }
