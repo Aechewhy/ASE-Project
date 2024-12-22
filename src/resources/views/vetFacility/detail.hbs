@@ -1,0 +1,32 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID cơ sở</th>
+      <th scope="col">Tên</th>
+      <th scope="col">Địa điểm</th>
+      <th scope="col">SDT</th>
+      <th scope="col">Số lượng</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{vetFacility.id}}</td>
+      <td>{{vetFacility.name}}</td>
+      <td>{{vetFacility.location}}</td>
+      <td>{{vetFacility.contact_number}}</td>
+      <td>{{vetFacility.capacity}}</td>
+      <td>
+        {{#if vetFacility.disposalFacility}}
+            {{#each vetFacility.disposalFacility}}
+              - {{this.name}}
+              {{#unless @last}}
+                <br />
+              {{/unless}}
+            {{/each}}
+        {{else}}
+          Không có sản phẩm nào
+        {{/if}}
+      </td>
+    </tr>
+  </tbody>
+</table>
