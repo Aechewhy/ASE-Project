@@ -8,9 +8,16 @@ const certificateFacilityRouter = require("./certificateFacilityRoutes");
 const wasteTreatmentFacilityRouter = require("./wasteTreatmentFacilityRoutes");
 const wasteTreatmentProductRouter = require("./wasteTreatmentProductRoutes");
 const processingFacilityRouter = require("./processingFacilityRoutes");
+const raisingEmployeeRouter = require("./raisingEmployeeRoutes");
+const livestockProductRouter = require("./livestockProductRoutes");
+
 
 
 function route(app) {
+
+  app.use("/livestockProduct", livestockProductRouter);
+
+  app.use("/raisingEmployee", raisingEmployeeRouter);
 
   app.use("/processingFacility", processingFacilityRouter);
   
