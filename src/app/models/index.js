@@ -6,6 +6,8 @@ const WasteTreatmentProduct = require("./wasteTreatmentProductModel");
 const ProcessingFacility = require("./processingFacilityModel");
 const VetFacility = require("./vetFacilityModel");
 const DisposalFacility = require("./disposalFacilityModel");
+const RaisingEmployee = require("./raisingEmployeeModel");
+const LivestockProduct = require("./livestockProductModel");
 
 // Định nghĩa quan hệ
 CertificateFacility.hasMany(Certificate, {

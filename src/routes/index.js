@@ -10,6 +10,8 @@ const wasteTreatmentProductRouter = require("./wasteTreatmentProductRoutes");
 const processingFacilityRouter = require("./processingFacilityRoutes");
 const vetFacilityRouter = require("./vetFacilityRoutes");
 const disposalFacilityRouter = require("./disposalFacilityRoutes");
+const raisingEmployeeRouter = require("./raisingEmployeeRoutes");
+const livestockProductRouter = require("./livestockProductRoutes");
 
 
 function route(app) {

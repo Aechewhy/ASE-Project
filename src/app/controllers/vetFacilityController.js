@@ -29,7 +29,7 @@ class VetFacilityController {
       vetFacility.map(sequelizeToObject);
 
       // Trả về dữ liệu
-      return res.render("./wasteTreatmentFacility/wasteTreatmentFacility", {
+      return res.render("./vetFacility/vetFacility", {
         vetFacility: vetFacilityObjects,
       });
     } catch (err) {
