@@ -1,0 +1,120 @@
+<div class="row mb-3 mt-4">
+    <div class="col-md-6">
+        <input
+            type="text"
+            id="search-input"
+            class="form-control"
+            placeholder="Tìm kiếm ..."
+        />
+    </div>
+</div>
+<h1 class="mt-4">Danh sách cơ sở giết mổ</h1>
+<table class="table table-bordered table-hover mt-4">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Địa điểm</th>
+            <th>Liên hệ</th>
+            <th>Sức chứa</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each slaughterhouse}}
+            <tr>
+                <td>{{inc @index}}</td>
+                <td>{{this.id}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.location}}</td>
+                <td>{{this.contact_number}}</td>
+                <td>{{this.capacity}}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a href="/slaughterhouse/{{this.id}}">
+                            <button
+                                type="button"
+                                class="btn btn-secondary mr-1"
+                            >Chi tiết</button>
+                        </a>
+                        <a href="/slaughterhouse/{{this.id}}/edit">
+                            <button
+                                type="button"
+                                class="btn btn-secondary mr-1"
+                            >Chỉnh sửa</button>
+                        </a>
+                        <a href="#">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                            >Xoá</button>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<div
+    class="modal fade"
+    id="delete-slaughterhouse-modal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xoá chứng chỉ</h5>
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn chắc chắn muốn xoá cơ sở này chứ ?
+            </div>
+            <div class="modal-footer">
+                <button
+                    id="btn-delete-slaughterhouse"
+                    type="button"
+                    class="btn btn-danger"
+                >Xoá bỏ</button>
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                >Huỷ</button>
+            </div>
+        </div>
+        <form name="delete-slaughterhouse-form" method="POST"></form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () { var deleteButton
+    = document.getElementById('btn-delete-slaughterhouse'); var deleteForm =
+    document.forms['delete-slaughterhouse-form'];
+    $('#delete-slaughterhouse-modal').on('show.bs.modal', function (event) { var
+    button = $(event.relatedTarget); var itemId = button.data('id');
+    deleteButton.addEventListener('click', function(e) { e.preventDefault();
+    deleteForm.action = `/slaughterhouse/${itemId}?_method=DELETE`;
+    deleteForm.submit(); }); }); var searchInput =
+    document.getElementById('search-input');
+    searchInput.addEventListener('keyup', function() { var filter =
+    searchInput.value.toLowerCase(); var table = document.querySelector('table
+    tbody'); var rows = table.getElementsByTagName('tr'); for (var i = 0; i <
+    rows.length; i++) { var idCell = rows[i].getElementsByTagName('td')[1]; var
+    nameCell = rows[i].getElementsByTagName('td')[2]; if (idCell && nameCell) {
+    var idText = idCell.textContent || idCell.innerText; var nameText =
+    nameCell.textContent || nameCell.innerText; if (
+    idText.toLowerCase().indexOf(filter) > -1 ||
+    nameText.toLowerCase().indexOf(filter) > -1) { rows[i].style.display = ""; }
+    else { rows[i].style.display = "none"; } } } }); });
+</script>
