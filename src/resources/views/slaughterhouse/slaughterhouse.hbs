@@ -45,11 +45,13 @@
                             >Chỉnh sửa</button>
                         </a>
                         <a href="#">
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                            >Xoá</button>
-                        </a>
+                            <button 
+                                type="button" 
+                                class="btn btn-secondary" 
+                                data-id="{{this.id}}" 
+                                data-toggle="modal" 
+                                data-target="#delete-slaughterhouse-modal">Xoá</button>
+                    </a>
                     </div>
                 </td>
             </tr>
@@ -67,7 +69,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Xoá chứng chỉ</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Xoá cơ sở</h5>
                 <button
                     type="button"
                     class="close"
@@ -98,23 +100,28 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () { var deleteButton
-    = document.getElementById('btn-delete-slaughterhouse'); var deleteForm =
-    document.forms['delete-slaughterhouse-form'];
-    $('#delete-slaughterhouse-modal').on('show.bs.modal', function (event) { var
-    button = $(event.relatedTarget); var itemId = button.data('id');
-    deleteButton.addEventListener('click', function(e) { e.preventDefault();
-    deleteForm.action = `/slaughterhouse/${itemId}?_method=DELETE`;
-    deleteForm.submit(); }); }); var searchInput =
-    document.getElementById('search-input');
-    searchInput.addEventListener('keyup', function() { var filter =
-    searchInput.value.toLowerCase(); var table = document.querySelector('table
-    tbody'); var rows = table.getElementsByTagName('tr'); for (var i = 0; i <
-    rows.length; i++) { var idCell = rows[i].getElementsByTagName('td')[1]; var
-    nameCell = rows[i].getElementsByTagName('td')[2]; if (idCell && nameCell) {
-    var idText = idCell.textContent || idCell.innerText; var nameText =
-    nameCell.textContent || nameCell.innerText; if (
-    idText.toLowerCase().indexOf(filter) > -1 ||
-    nameText.toLowerCase().indexOf(filter) > -1) { rows[i].style.display = ""; }
-    else { rows[i].style.display = "none"; } } } }); });
+    document.addEventListener('DOMContentLoaded', function () { 
+        var deleteButton = document.getElementById('btn-delete-slaughterhouse'); 
+        var deleteForm = document.forms['delete-slaughterhouse-form'];
+    $('#delete-slaughterhouse-modal').on('show.bs.modal', function (event) { 
+        var button = $(event.relatedTarget); 
+        var itemId = button.data('id');
+        deleteButton.addEventListener('click', function(e) { e.preventDefault();
+        deleteForm.action = `/slaughterhouse/${itemId}?_method=DELETE`;
+        deleteForm.submit(); }); 
+    }); 
+        var searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('keyup', function() { 
+            var filter = searchInput.value.toLowerCase(); var table = document.querySelector('table tbody'); 
+            var rows = table.getElementsByTagName('tr'); 
+            for (var i = 0; i < rows.length; i++) { 
+                var idCell = rows[i].getElementsByTagName('td')[1]; 
+                var nameCell = rows[i].getElementsByTagName('td')[2]; 
+                if (idCell && nameCell) {
+                    var idText = idCell.textContent || idCell.innerText; 
+                    var nameText = nameCell.textContent || nameCell.innerText; 
+                    if ( idText.toLowerCase().indexOf(filter) > -1 || nameText.toLowerCase().indexOf(filter) > -1) { 
+                        rows[i].style.display = ""; 
+                    }
+                    else { rows[i].style.display = "none"; } } } }); });
 </script>

@@ -1,5 +1,6 @@
 const Slaughterhouse = require("../models/slaughterhouseModel");
-const { sequelizeToObject } = require("../../util/mysql");
+const { sequelizeToObject,
+    mutipleSequelizeToObject } = require("../../util/mysql");
 
 class SlaughterhouseController {
     // GET slaughterhouse
@@ -47,20 +48,20 @@ class SlaughterhouseController {
     }
 
     //[GET] /certificate/create
-    // create(req, res, next) {
-    //     Slaughterhouse.findAll({
-    //         attributes: ["id", "name"],
-    //     })
-    //         .then((slaughterhouse) => {
-    //             res.render("./slaughterhouse/create", {
-    //                 slaughterhouse: mutipleSequelizeToObject(slaughterhouse),
-    //             });
-    //         })
-    //         .catch(next);
-    // }
     create(req, res, next) {
-        res.render("./slaughterhouse/create");
+        Slaughterhouse.findAll({
+            attributes: ["id", "name"],
+        })
+            .then((slaughterhouse) => {
+                res.render("./slaughterhouse/create", {
+                    slaughterhouse: mutipleSequelizeToObject(slaughterhouse),
+                });
+            })
+            .catch(next);
     }
+    // create(req, res, next) {
+    //     res.render("./slaughterhouse/create");
+    // }
     //[POST] /certificate/store
     store(req, res, next) {
         // Lấy dữ liệu từ body
@@ -69,14 +70,13 @@ class SlaughterhouseController {
         // Chuyển đổi id sang số nguyên
         const slaughterhouseId = parseInt(id, 10); // base 10
         const shCapacity = parseInt(capacity, 10); // base 10
-        const contactNumber = parseInt(contact_number, 10); // base 10
 
         // Kiểm tra dữ liệu
         if (
             !slaughterhouseId ||
             !name ||
             !location ||
-            !contactNumber ||
+            !contact_number ||
             !shCapacity
         ) {
             return res
@@ -88,7 +88,7 @@ class SlaughterhouseController {
             id: slaughterhouseId,
             name,
             location,
-            contact_number: contactNumber,
+            contact_number,
             capacity: shCapacity,
         })
             .then(() => res.redirect("./"))
@@ -139,7 +139,6 @@ class SlaughterhouseController {
                 location,
                 contact_number,
                 capacity,
-                slaughterhouse,
             },
             {
                 where: { id: slaughterhouseId }, // Điều kiện where

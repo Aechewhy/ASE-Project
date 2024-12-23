@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize("livestock", "root", "MySQL2472004", {
+const sequelize = new Sequelize("livestock", "root", "admin", {
     host: "localhost",
     dialect: "mysql",
     logging: false, // Disable logging
