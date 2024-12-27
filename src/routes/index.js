@@ -1,6 +1,7 @@
 const certificateFacilityRouter = require("./certificateFacilityRoutes");
 const certificateRouter = require("./certificateRoutes");
 const loginRouter = require("./loginRoutes");
+const aboutRouter = require("./aboutRoutes");
 const processingFacilityRouter = require("./processingFacilityRoutes");
 const slaughterhouseRouter = require("./slaughterhouseRoutes");
 const raisingFacilityRouter = require("./raisingFacilityRoutes");
@@ -15,6 +16,7 @@ function route(app) {
     app.use("/certificate", certificateRouter);
     app.use("/certificateFacility", certificateFacilityRouter);
     app.use("/login", loginRouter);
+    app.use("/about", aboutRouter);
     app.use("/processingFacility", processingFacilityRouter);
     app.use("/raisingFacility", raisingFacilityRouter);
     app.use("/search", searchRouter);
