@@ -23,8 +23,8 @@ LivestockProduct.init(
   },
   {
     sequelize,
-    modelName: "raising_employee",
-    tableName: "raising_employee",
+    modelName: "livestock_product",
+    tableName: "livestock_product",
     timestamps: false,
     logging: false,
   },

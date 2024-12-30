@@ -10,6 +10,8 @@ const siteRouter = require("./site");
 const userRouter = require("./userRoutes");
 const wasteTreatmentFacilityRouter = require("./wasteTreatmentFacilityRoutes");
 const wasteTreatmentProductRouter = require("./wasteTreatmentProductRoutes");
+const raisingEmployeeRouter = require("./raisingEmployeeRoutes");
+const livestockProductRouter = require("./livestockProductRoutes");
 
 function route(app) {
     app.use("/", siteRouter);
@@ -24,6 +26,8 @@ function route(app) {
     app.use("/user", userRouter);
     app.use("/wasteTreatmentFacility", wasteTreatmentFacilityRouter);
     app.use("/wasteTreatmentProduct", wasteTreatmentProductRouter);
+    app.use("/raisingEmployee", raisingEmployeeRouter);
+    app.use("/livestockProduct", livestockProductRouter);
 }
 
 module.exports = route;
