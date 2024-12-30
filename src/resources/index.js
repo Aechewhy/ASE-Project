@@ -1,6 +1,6 @@
 const express = require("express"); //framework expressjs
 const app = express();
-const port = 999; //port
+const port = 998; //port
 const handlebars = require("express-handlebars"); //template engine
 const path = require("path"); //xử lý đường dẫn
 const methodOverride = require("method-override"); //ghi đè phương thức

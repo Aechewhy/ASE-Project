@@ -4,6 +4,7 @@
     </div>
 </div>
 
+<<<<<<< Updated upstream
 <table class="table table-bordered table-hover">
     <thead>
     <tr>
@@ -11,10 +12,20 @@
         <th scope="col">ID chứng chỉ</th>
         <th scope="col">Tên chứng chỉ</th>
         <th scope="col">Thao tác</th>
+=======
+<h1 class="mt-4">Danh sách chứng chỉ</h1>
+<table class="table table-bordered table-hover mt-4">
+  <thead>
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Tên chứng chỉ</th>
+      <th scope="col">Thao tác</th>
+>>>>>>> Stashed changes
     </tr>
     </thead>
     <tbody>
     {{#each certificate}}
+<<<<<<< Updated upstream
         <tr>
             <td>{{inc @index}}</td>
             <td>{{this.id}}</td>
@@ -33,6 +44,25 @@
                 </div>
             </td>
         </tr>
+=======
+    <tr>
+      <td>{{inc @index}}</td>
+      <td>{{this.name}}</td>
+      <td>
+        <div class="btn-group" role="group">
+          <a href="/certificate/{{this.id}}">
+            <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
+          </a>
+          <a href="/certificate/{{this.id}}/edit">
+            <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
+          </a>
+          <a href="#">
+            <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-certificate-modal">Xoá</button>
+          </a>
+        </div>
+      </td>
+    </tr>
+>>>>>>> Stashed changes
     {{/each}}
     </tbody>
 </table>

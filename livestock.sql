@@ -18,8 +18,12 @@
 --
 -- Table structure for table `certificate`
 --
+<<<<<<< Updated upstream
 CREATE DATABASE livestock;
 USE livestock;
+=======
+
+>>>>>>> Stashed changes
 DROP TABLE IF EXISTS `certificate`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -210,6 +214,41 @@ LOCK TABLES `raising_facility` WRITE;
 /*!40000 ALTER TABLE `raising_facility` DISABLE KEYS */;
 INSERT INTO `raising_facility` VALUES (1,'Sunny Acres','Cattle','John Doe','Texas','100 acres',50),(2,'Green Meadow','Sheep','Sarah Lee','California','75 acres',30),(3,'Farm Fresh','Poultry','Mark Wilson','Florida','50 acres',20),(4,'Happy Hooves','Goats','Emma Clark','Ohio','60 acres',15),(5,'Wild Heritage','Pigs','Lucas Hill','Illinois','120 acres',40);
 /*!40000 ALTER TABLE `raising_facility` ENABLE KEYS */;
+<<<<<<< Updated upstream
+=======
+UNLOCK TABLES;
+
+--
+-- Table structure for table `raisingfacility`
+--
+
+DROP TABLE IF EXISTS `raisingfacility`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `raisingfacility` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `livestock_type` varchar(100) DEFAULT NULL,
+  `owner` varchar(100) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `size` varchar(100) DEFAULT NULL,
+  `employee_number` int DEFAULT NULL,
+  `certificate_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `certificate_id` (`certificate_id`),
+  CONSTRAINT `raisingfacility_ibfk_1` FOREIGN KEY (`certificate_id`) REFERENCES `certificate` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `raisingfacility`
+--
+
+LOCK TABLES `raisingfacility` WRITE;
+/*!40000 ALTER TABLE `raisingfacility` DISABLE KEYS */;
+/*!40000 ALTER TABLE `raisingfacility` ENABLE KEYS */;
+>>>>>>> Stashed changes
 UNLOCK TABLES;
 
 --
@@ -334,4 +373,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< Updated upstream
 -- Dump completed on 2024-12-18 15:53:52
+=======
+-- Dump completed on 2024-12-18 15:48:47
+>>>>>>> Stashed changes

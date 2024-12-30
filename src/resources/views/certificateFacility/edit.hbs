@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <h3 class="mt-4">Cập nhật cơ quan chứng nhận</h3>
 
 <div class="mt-4">
@@ -6,6 +7,21 @@
             <label for="name">Tên cơ quan chứng nhận</label>
             <input type="text" class="form-control" value="{{certificateFacility.name}}" id="name" name="name">
         </div>
+=======
+<h3 class="mt-4">Cập nhật cơ sở chứng nhận</h3>
+
+<div class="mt-4">
+    <form method="POST" action="/certificateFacility/{{certificate.id}}?_method=PUT">
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" value="{{certificateFacility.id}}" id="id" name="id">
+        </div>
+        <div class="form-group">
+            <label for="name">Tên chứng chỉ</label>
+            <input type="text" class="form-control" value="{{certificateFacility.name}}" id="name" name="name">
+        </div>
+        
+>>>>>>> Stashed changes
         <button type="submit" class="btn btn-primary mt-4">Lưu</button>
     </form>
 </div>

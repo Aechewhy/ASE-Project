@@ -3,7 +3,10 @@ const { Certificate } = require("../models");
 const { sequelizeToObject,
         mutipleSequelizeToObject
       } = require("../../util/mysql");
+<<<<<<< Updated upstream
 const { Op } = require("sequelize");
+=======
+>>>>>>> Stashed changes
 
 class CertificateFacilityController {
   // GET /certificateFacility
@@ -91,6 +94,7 @@ class CertificateFacilityController {
       });
   }
 
+<<<<<<< Updated upstream
   // [GET] /certificateFacility/:id/edit
   edit(req, res, next) {
     Certificate.findAll({
@@ -139,6 +143,53 @@ class CertificateFacilityController {
         .then(() => res.redirect('./'))
         .catch(next);
   }
+=======
+  //[GET] /certificate/:id/edit
+  edit(req, res, next) {
+    CertificateFacility.findAll({
+    attributes: ['id', 'name'], // Chỉ lấy id và name
+  })
+    .then((facilities) => {
+      return Certificate.findOne({
+        where: { id: req.params.id },
+      })
+        .then((certificate) => {
+          res.render("./certificate/edit", {
+            certificateFacility: mutipleSequelizeToObject(facilities),
+            certificate: sequelizeToObject(certificate),
+          });
+        });
+    })
+    .catch(next); // Bắt lỗi nếu có bất kỳ Promise nào bị lỗi
+}  
+
+//[PUT] /certificate/:id
+update(req, res, next) {
+  // Lấy dữ liệu từ body và params
+  const { name } = req.body;
+  const certificateFacilityId = parseInt(req.params.id, 10); // Sử dụng id từ URL params
+
+  // Kiểm tra dữ liệu đầu vào
+  if (!certificateFacilityId || !name ) {
+      return res.status(400).json({
+          message: "ID và tên của cơ sở chứng nhận không được để trống."
+      });
+  }
+
+// Thực hiện cập nhật với điều kiện where rõ ràng
+CertificateFacility.update(
+    {
+        name,
+        id,
+    },
+    {
+        where: { id: certificateId } // Điều kiện where
+    }
+)
+.then(() => res.redirect("./"))
+.catch(next)
+}
+>>>>>>> Stashed changes
 
 }
 
