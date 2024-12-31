@@ -64,14 +64,14 @@ class LivestockProductController {//
   //[POST] /livestockProduct/store
   store(req, res, next) {
     // Lấy dữ liệu từ body
-    const { id, name, role, birthday, gender, phone_number, email, raising_facility_id } = req.body;
+    const { id, name, raising_facility_id } = req.body;
 
     // Chuyển đổi id và livestockProduct_facility_id sang số nguyên
     const livestockProductId = parseInt(id, 10); // base 10
     const raisingFacilityId = parseInt(raising_facility_id, 10); // base 10
 
     // Kiểm tra dữ liệu
-    if ( !livestockProductId || !name || !role || !birthday || !gender || !phone_number || !email) {
+    if ( !name ) {
       return res
         .status(400)
         .send(
@@ -82,11 +82,6 @@ class LivestockProductController {//
     LivestockProduct.create({//
       id: livestockProductId,
       name,
-      role,
-      birthday,
-      gender,
-      phone_number,
-      email,
       raising_facility_id: raisingFacilityId,
     })
       .then(() => res.redirect("./"))
@@ -114,11 +109,11 @@ edit(req, res, next) {
   //[PUT] /livestockProduct/:id
   update(req, res, next) {
     // Lấy dữ liệu từ body và params
-    const {name, role, birthday, gender, phone_number, email,} = req.body;
+    const {name} = req.body;
     const livestockProductId = parseInt(req.params.id, 10); // Sử dụng id từ URL params
 
     // Kiểm tra dữ liệu đầu vào
-    if ( !livestockProductId || !name || !role || !birthday || !gender || !phone_number || !email) {
+    if ( !livestockProductId || !name) {
         return res.status(400).json({
             message: "Thông tin không được để trống."
         });
@@ -128,11 +123,6 @@ edit(req, res, next) {
   LivestockProduct.update(//
       {
         name,
-        role,
-        birthday,
-        gender,
-        phone_number,
-        email,
       },
       {
           where: { id: livestockProductId } // Điều kiện where
