@@ -10,10 +10,15 @@ const siteRouter = require("./site");
 const userRouter = require("./userRoutes");
 const wasteTreatmentFacilityRouter = require("./wasteTreatmentFacilityRoutes");
 const wasteTreatmentProductRouter = require("./wasteTreatmentProductRoutes");
+const vetFacilityRouter = require("./vetFacilityRoutes");
+const disposalFacilityRouter = require("./disposalFacilityRoutes");
 const raisingEmployeeRouter = require("./raisingEmployeeRoutes");
 const livestockProductRouter = require("./livestockProductRoutes");
 
 function route(app) {
+      app.use("/disposalFacility", disposalFacilityRouter);
+
+  app.use("/vetFacility", vetFacilityRouter);
     app.use("/", siteRouter);
     app.use("/certificate", certificateRouter);
     app.use("/certificateFacility", certificateFacilityRouter);
