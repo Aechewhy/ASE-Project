@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3>Thêm cơ sở thú y</h3>
+    <a href="/vetPharmacy" class="btn btn-secondary">Danh mục</a>
+  </div>
+
+  <div class="mt-4">
+    <form method="POST" action="/vetPharmacy/store">
+      <div class="form-group">
+        <label for="id">ID cơ sở</label>
+        <input type="text" class="form-control" id="id" name="id">
+      </div>
+      <div class="form-group">
+        <label for="name">Tên cơ sở</label>
+        <input type="text" class="form-control" id="name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="location">Địa chỉ</label>
+        <input type="text" class="form-control" id="location" name="location">
+      </div>
+      <div class="form-group">
+        <label for="contact_number">Số điện thoại</label>
+        <input type="text" class="form-control" id="contact_number" name="contact_number">
+      </div>
+      <div class="form-group">
+        <label for="opening_hours">Giờ mở cửa</label>
+        <input type="text" class="form-control" id="opening_hours" name="opening_hours">
+      </div>
+      <button type="submit" class="btn btn-primary mt-4">Thêm</button>
+    </form>
+  </div>
+</div>
