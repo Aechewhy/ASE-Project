@@ -6,7 +6,7 @@
 -   Instructor: Vũ Song Tùng
 -   Group name: Huy và những người bạn
 -   Members:
-    -   Trần Gia Huy (leader)
+    -   Trần Gia Huy
     -   Trần Tuấn Tú
     -   Nguyễn Trọng Phúc
     -   Nguyễn Việt Dũng

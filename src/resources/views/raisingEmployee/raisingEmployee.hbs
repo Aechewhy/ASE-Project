@@ -1,37 +1,42 @@
 
 
-  <h1 class="mt-4">Danh sách cơ quan chứng nhận</h1>
+  <h1 class="mt-4">Danh sách nhân viên</h1>
   <table class="table table-bordered table-hover mt-4">
     <thead>
       <tr>
         <th>STT</th>
         <th>ID</th>
-        <th>Tên cơ quan</th>
-        <th>Địa điểm</th>
-        <th>Chủ sở hữu</th>
-        <th>Loại hình</th>
-        <th>Thao tác</th>
+        <th>Tên nhân viên</th>
+        <th>Chức vụ</th>
+        <th>Ngày tháng năm sinh</th>
+        <th>Giới tính</th>
+        <th>Số điện thoại</th>
+        <th>Email</th>
+        
       </tr>
     </thead>
     <tbody>
-      {{#each processingFacility}}
+      {{#each raisingEmployee}}
       <tr>
         <td>{{inc @index}}</td>
         <td>{{this.id}}</td> 
         <td>{{this.name}}</td>
-        <td>{{this.location}}</td>
-        <td>{{this.owner}}</td>
-        <td>{{this.type}}</td>
+        <td>{{this.role}}</td>
+        <td>{{this.birthday}}</td>
+        <td>{{this.gender}}</td>
+        <td>{{this.phone_number}}</td>
+        <td>{{this.email}}</td>
+        
         <td>
           <div class="btn-group" role="group">
-            <a href="/processingFacility/{{this.id}}">
+            <a href="/raisingEmployee/{{this.id}}">
               <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
             </a>
-            <a href="/processingFacility/{{this.id}}/edit">
+            <a href="/raisingEmployee/{{this.id}}/edit">
              <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
             </a>
             <a href="#">
-              <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-processingFacility-modal">Xoá</button>
+              <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-raisingEmployee-modal">Xoá</button>
             </a>
           </div>
         </td>
@@ -40,39 +45,39 @@
     </tbody>
   </table>
 
-<div class="modal fade" id="delete-processingFacility-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete-raisingEmployee-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Xoá chứng chỉ</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Xoá nhân viên</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Bạn chắc chắn muốn xoá cơ sở này chứ ?
+                Bạn chắc chắn muốn xoá nhân viên này chứ ?
             </div>
             <div class="modal-footer">
-                <button id="btn-delete-processingFacility" type="button" class="btn btn-danger">Xoá bỏ</button>
+                <button id="btn-delete-raisingEmployee" type="button" class="btn btn-danger">Xoá bỏ</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
             </div>
         </div>
-        <form name="delete-processingFacility-form" method="POST"></form>
+        <form name="delete-raisingEmployee-form" method="POST"></form>
     </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var deleteButton = document.getElementById('btn-delete-processingFacility');
-        var deleteForm = document.forms['delete-processingFacility-form'];
+        var deleteButton = document.getElementById('btn-delete-raisingEmployee');
+        var deleteForm = document.forms['delete-raisingEmployee-form'];
 
-        $('#delete-processingFacility-modal').on('show.bs.modal', function (event) {
+        $('#delete-raisingEmployee-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var itemId = button.data('id');
 
             deleteButton.addEventListener('click', function(e) {
                 e.preventDefault();
-                deleteForm.action = `/processingFacility/${itemId}?_method=DELETE`;
+                deleteForm.action = `/raisingEmployee/${itemId}?_method=DELETE`;
                 deleteForm.submit();
             });
         });

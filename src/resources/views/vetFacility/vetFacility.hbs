@@ -1,37 +1,41 @@
+<div class="row mb-3 mt-4">
+    <div class="col-md-6">
+        <input type="text" id="search-input" class="form-control" placeholder="Tìm kiếm chi cục thú y...">
+    </div>
+</div>
 
-
-  <h1 class="mt-4">Danh sách cơ quan chứng nhận</h1>
+  <h1 class="mt-4">Danh sách cơ quan</h1>
   <table class="table table-bordered table-hover mt-4">
     <thead>
       <tr>
         <th>STT</th>
-        <th>ID</th>
+        <th>ID cơ quan</th>
         <th>Tên cơ quan</th>
-        <th>Địa điểm</th>
-        <th>Chủ sở hữu</th>
-        <th>Loại hình</th>
+        <th>Vị trí</th>
+        <th>Số điện thoại</th>
+        <th>Số lượng</th>
         <th>Thao tác</th>
       </tr>
     </thead>
     <tbody>
-      {{#each processingFacility}}
+      {{#each vetFacility}}
       <tr>
         <td>{{inc @index}}</td>
-        <td>{{this.id}}</td> 
+        <td>{{this.id}}</td>
         <td>{{this.name}}</td>
         <td>{{this.location}}</td>
-        <td>{{this.owner}}</td>
-        <td>{{this.type}}</td>
+        <td>{{this.contact_number}}</td>
+        <td>{{this.capacity}}</td>
         <td>
           <div class="btn-group" role="group">
-            <a href="/processingFacility/{{this.id}}">
+            <a href="/vetFacility/{{this.id}}">
               <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
             </a>
-            <a href="/processingFacility/{{this.id}}/edit">
+            <a href="/vetFacility/{{this.id}}/edit">
              <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
             </a>
             <a href="#">
-              <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-processingFacility-modal">Xoá</button>
+              <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-vetFacility-modal">Xoá</button>
             </a>
           </div>
         </td>
@@ -40,7 +44,7 @@
     </tbody>
   </table>
 
-<div class="modal fade" id="delete-processingFacility-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete-vetFacility-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -53,26 +57,26 @@
                 Bạn chắc chắn muốn xoá cơ sở này chứ ?
             </div>
             <div class="modal-footer">
-                <button id="btn-delete-processingFacility" type="button" class="btn btn-danger">Xoá bỏ</button>
+                <button id="btn-delete-vetFacility" type="button" class="btn btn-danger">Xoá bỏ</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
             </div>
         </div>
-        <form name="delete-processingFacility-form" method="POST"></form>
+        <form name="delete-vetFacility-form" method="POST"></form>
     </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var deleteButton = document.getElementById('btn-delete-processingFacility');
-        var deleteForm = document.forms['delete-processingFacility-form'];
+        var deleteButton = document.getElementById('btn-delete-vetFacility');
+        var deleteForm = document.forms['delete-vetFacility-form'];
 
-        $('#delete-processingFacility-modal').on('show.bs.modal', function (event) {
+        $('#delete-vetFacility-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var itemId = button.data('id');
 
             deleteButton.addEventListener('click', function(e) {
                 e.preventDefault();
-                deleteForm.action = `/processingFacility/${itemId}?_method=DELETE`;
+                deleteForm.action = `/vetFacility/${itemId}?_method=DELETE`;
                 deleteForm.submit();
             });
         });

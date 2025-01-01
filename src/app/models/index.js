@@ -4,6 +4,10 @@ const RaisingFacility = require("./raisingFacilityModel");
 const WasteTreatmentFacility = require("./wasteTreatmentFacilityModel");
 const WasteTreatmentProduct = require("./wasteTreatmentProductModel");
 const ProcessingFacility = require("./processingFacilityModel");
+const VetFacility = require("./vetFacilityModel");
+const DisposalFacility = require("./disposalFacilityModel");
+const RaisingEmployee = require("./raisingEmployeeModel");
+const LivestockProduct = require("./livestockProductModel");
 
 // Định nghĩa quan hệ
 CertificateFacility.hasMany(Certificate, {
@@ -41,6 +45,24 @@ ProcessingFacility.belongsTo(RaisingFacility, {
   foreignKey: "raising_facility_id",
   as: "raisingFacility",
 });
+RaisingEmployee.belongsTo(RaisingFacility, {
+  foreignKey: "raising_facility_id",
+  as: "raisingFacility",
+});
+LivestockProduct.belongsTo(RaisingFacility, {
+  foreignKey: "raising_facility_id",
+  as: "raisingFacility",
+});
+
+
+VetFacility.hasMany(DisposalFacility, {
+  foreignKey: "vet_facility_id",
+  as: "disposalFacility",
+});
+DisposalFacility.belongsTo(VetFacility, {
+  foreignKey: "vet_facility_id",
+  as: "vetFacility",
+});
 
 module.exports = {
   CertificateFacility,
@@ -49,4 +71,6 @@ module.exports = {
   WasteTreatmentFacility,
   WasteTreatmentProduct,
   ProcessingFacility,
+  VetFacility,
+  DisposalFacility,
 };

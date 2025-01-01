@@ -1,31 +1,31 @@
-<h3 class="mt-4">Thêm chứng chỉ</h3>
+<h3 class="mt-4">Thêm địa chỉ</h3>
 
 <div class="mt-4">
-    <form method="POST" action="/processingFacility/store">
+    <form method="POST" action="/disposalFacility/store">
         <div class="form-group">
-            <label for="id">ID</label>
+            <label for="id">ID </label>
             <input type="text" class="form-control" id="id" name="id">
         </div>
         <div class="form-group">
-            <label for="name">Tên chứng chỉ</label>
+            <label for="name">Tên xưởng</label>
             <input type="text" class="form-control" id="name" name="name">
         </div>
         <div class="form-group">
-            <label for="name">Địa điểm</label>
+            <label for="location">địa chỉ</label>
             <input type="text" class="form-control" id="location" name="location">
         </div>
         <div class="form-group">
-            <label for="name">Chủ sở hữu</label>
-            <input type="text" class="form-control" id="owner" name="owner">
+            <label for="contact_number">SDT</label>
+            <input type="text" class="form-control" id="contact_number" name="contact_number">
         </div>
         <div class="form-group">
-            <label for="name">Thể loại</label>
-            <input type="text" class="form-control" id="type" name="type">
+            <label for="capacity">Số lượng</label>
+            <input type="text" class="form-control" id="capacity" name="capacity">
         </div>
         <div>
-            <label for="raising_facility_id">Cơ sở chăn nuôi</label>
-            <select class="form-control" name="raising_facility_id">
-                {{#each raisingFacility}}
+            <label for="waste_treatment_facility">Chi cục thú y</label>
+            <select class="form-control" name="vet_facility">
+                {{#each vetFacility}}
                 <option value="{{this.id}}">{{this.name}}</option>
                 {{/each}}
             </select>
