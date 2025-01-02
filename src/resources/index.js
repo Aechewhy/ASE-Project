@@ -8,12 +8,6 @@ const route = require("../routes/index");
 const session = require("express-session");
 const User = require("../app/models/userModel"); //Sử dụng model User để test kết nối với database
 
-// Import testingFacility routes
-const testingFacilityRoutes = require("../routes/testingFacilityRoutes");
-
-// Import vetPharmacy routes
-const vetPharmacyRoutes = require("../routes/vetPharmacyRoutes");
-
 //Cài đặt file tĩnh
 app.use(express.static(path.join(__dirname, "../public")));
 
@@ -50,42 +44,6 @@ app.use(
     saveUninitialized: true,
   }),
 );
-
-// Middleware to check if user is authenticated
-function isAuthenticated(req, res, next) {
-  if (req.session.user) {
-    return next();
-  } else {
-    res.redirect("/login");
-  }
-}
-
-// Add the login route
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
-app.post("/login", (req, res) => {
-  const { username, password } = req.body;
-  // Here you would normally check the username and password against your database
-  if (username === "admin@gmail.com" && password === "password") {
-    req.session.user = { username };
-    res.redirect("/");
-  } else {
-    res.redirect("/login");
-  }
-});
-
-// Add the route for the home page with authentication check
-app.get("/", isAuthenticated, (req, res) => {
-  res.render("home", { admin: true }); // Pass admin variable for testing
-});
-
-// Use testingFacility routes
-app.use("/testingFacility", testingFacilityRoutes);
-
-// Use vetPharmacy routes
-app.use("/vetPharmacy", vetPharmacyRoutes);
 
 route(app);
 

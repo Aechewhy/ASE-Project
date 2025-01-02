@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
--- Host: localhost    Database: livestock
+-- Host: 127.0.0.1    Database: livestock
 -- ------------------------------------------------------
 -- Server version	8.0.40
 
@@ -75,15 +75,15 @@ DROP TABLE IF EXISTS `disposal_facility`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `disposal_facility` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `location` varchar(255) NOT NULL,
-  `contact_number` varchar(20) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `contact_number` varchar(100) DEFAULT NULL,
   `capacity` int DEFAULT NULL,
   `vet_facility_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `vet_facility_id` (`vet_facility_id`),
-  CONSTRAINT `disposal_facility_ibfk_1` FOREIGN KEY (`vet_facility_id`) REFERENCES `vet_facility` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `disposal_facility_ibfk_1` FOREIGN KEY (`vet_facility_id`) REFERENCES `vet_facility` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `livestock_product` (
   `raising_facility_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `raising_facility_id` (`raising_facility_id`),
-  CONSTRAINT `livestock_product_ibfk_1` FOREIGN KEY (`raising_facility_id`) REFERENCES `raising_facility` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `livestock_product_ibfk_1` FOREIGN KEY (`raising_facility_id`) REFERENCES `raising_facility` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -139,7 +139,7 @@ CREATE TABLE `processing_facility` (
   `raising_facility_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `raising_facility_id` (`raising_facility_id`),
-  CONSTRAINT `processing_facility_ibfk_3` FOREIGN KEY (`raising_facility_id`) REFERENCES `raising_facility` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `processing_facility_ibfk_1` FOREIGN KEY (`raising_facility_id`) REFERENCES `raising_facility` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -191,14 +191,14 @@ CREATE TABLE `raising_employee` (
   `id` int NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
+  `birthday` datetime DEFAULT NULL,
   `gender` varchar(1) DEFAULT NULL,
   `phone_number` varchar(10) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `raising_facility_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `raising_facility_id` (`raising_facility_id`),
-  CONSTRAINT `raising_employee_ibfk_1` FOREIGN KEY (`raising_facility_id`) REFERENCES `raising_facility` (`id`)
+  CONSTRAINT `raising_employee_ibfk_1` FOREIGN KEY (`raising_facility_id`) REFERENCES `raising_facility` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -208,7 +208,7 @@ CREATE TABLE `raising_employee` (
 
 LOCK TABLES `raising_employee` WRITE;
 /*!40000 ALTER TABLE `raising_employee` DISABLE KEYS */;
-INSERT INTO `raising_employee` VALUES (1,'John Adams','Manager','1980-05-10','M','1234509876','john.adams@sunnyacres.com',1),(2,'Anna Green','Worker','1992-08-15','F','2345612345','anna.green@greenmeadow.com',2),(3,'David White','Veterinarian','1985-03-22','M','3456723456','david.white@farmfresh.com',3),(4,'Emma Black','Supervisor','1990-06-30','F','4567834567','emma.black@happyhooves.com',4),(5,'Liam Blue','Laborer','1995-12-05','M','5678945678','liam.blue@wildheritage.com',5);
+INSERT INTO `raising_employee` VALUES (1,'John Adams','Manager','1980-05-10 00:00:00','M','1234509876','john.adams@sunnyacres.com',1),(2,'Anna Green','Worker','1992-08-15 00:00:00','F','2345612345','anna.green@greenmeadow.com',2),(3,'David White','Veterinarian','1985-03-22 00:00:00','M','3456723456','david.white@farmfresh.com',3),(4,'Emma Black','Supervisor','1990-06-30 00:00:00','F','4567834567','emma.black@happyhooves.com',4),(5,'Liam Blue','Laborer','1995-12-05 00:00:00','M','5678945678','liam.blue@wildheritage.com',5);
 /*!40000 ALTER TABLE `raising_employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,15 +277,15 @@ DROP TABLE IF EXISTS `testing_facility`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `testing_facility` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `location` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
   `facility_id` int NOT NULL,
   `product_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_WasteTreatmentFacility` (`facility_id`),
   KEY `FK_WasteTreatmentProduct` (`product_id`),
-  CONSTRAINT `FK_WasteTreatmentFacility` FOREIGN KEY (`facility_id`) REFERENCES `waste_treatment_facility` (`id`),
-  CONSTRAINT `FK_WasteTreatmentProduct` FOREIGN KEY (`product_id`) REFERENCES `waste_treatment_product` (`id`)
+  CONSTRAINT `testing_facility_ibfk_89` FOREIGN KEY (`facility_id`) REFERENCES `waste_treatment_facility` (`id`),
+  CONSTRAINT `testing_facility_ibfk_90` FOREIGN KEY (`product_id`) REFERENCES `waste_treatment_product` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -312,6 +312,7 @@ CREATE TABLE `user` (
   `email` varchar(100) DEFAULT NULL,
   `phone_number` varchar(100) DEFAULT NULL,
   `is_admin` tinyint(1) DEFAULT '0',
+  `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `phone_number` (`phone_number`)
@@ -324,7 +325,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Alice Johnson','alice.johnson@example.com','1234567890',1),(2,'Bob Smith','bob.smith@example.com','2345678901',0),(3,'Charlie Brown','charlie.brown@example.com','3456789012',0),(4,'Diana Ross','diana.ross@example.com','4567890123',1),(5,'Eve Davis','eve.davis@example.com','5678901234',0);
+INSERT INTO `user` VALUES (1,'Alice Johnson','alice.johnson@example.com','1234567890',1,'password123'),(2,'Bob Smith','bob.smith@example.com','2345678901',0,'password123'),(3,'Charlie Brown','charlie.brown@example.com','3456789012',0,'password123'),(4,'Diana Ross','diana.ross@example.com','4567890123',1,'password123'),(5,'Eve Davis','eve.davis@example.com','5678901234',0,'password123');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,12 +338,12 @@ DROP TABLE IF EXISTS `vet_facility`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vet_facility` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `location` varchar(255) NOT NULL,
-  `contact_number` varchar(20) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `contact_number` varchar(100) DEFAULT NULL,
   `capacity` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -364,14 +365,11 @@ DROP TABLE IF EXISTS `vet_pharmacy`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vet_pharmacy` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `location` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
   `contact_number` varchar(20) DEFAULT NULL,
   `opening_hours` varchar(100) DEFAULT NULL,
-  `vet_facility_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `vet_facility_id` (`vet_facility_id`),
-  CONSTRAINT `vet_pharmacy_ibfk_1` FOREIGN KEY (`vet_facility_id`) REFERENCES `vet_facility` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -381,7 +379,7 @@ CREATE TABLE `vet_pharmacy` (
 
 LOCK TABLES `vet_pharmacy` WRITE;
 /*!40000 ALTER TABLE `vet_pharmacy` DISABLE KEYS */;
-INSERT INTO `vet_pharmacy` VALUES (1,'Healthy Paws Pharmacy','123 Pet Lane','123-456-7890','9 AM - 6 PM',1),(2,'Animal Meds','456 Veterinary St','234-567-8901','8 AM - 8 PM',1),(3,'VetCare Plus','789 Farm Rd','345-678-9012','7 AM - 5 PM',2),(4,'PetRx','321 Ranch Blvd','456-789-0123','10 AM - 7 PM',2),(5,'Farm Animal Pharmacy','654 Barnyard Ave','567-890-1234','8 AM - 6 PM',3);
+INSERT INTO `vet_pharmacy` VALUES (1,'Healthy Paws Pharmacy','123 Pet Lane','123-456-7890','9 AM - 6 PM'),(2,'Animal Meds','456 Veterinary St','234-567-8901','8 AM - 8 PM'),(3,'VetCare Plus','789 Farm Rd','345-678-9012','7 AM - 5 PM'),(4,'PetRx','321 Ranch Blvd','456-789-0123','10 AM - 7 PM'),(5,'Farm Animal Pharmacy','654 Barnyard Ave','567-890-1234','8 AM - 6 PM');
 /*!40000 ALTER TABLE `vet_pharmacy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -447,4 +445,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-22 17:08:52
+-- Dump completed on 2025-01-02 10:01:45
