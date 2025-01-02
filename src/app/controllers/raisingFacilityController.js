@@ -13,14 +13,17 @@ class RaisingFacilityController {
       }
 
       const raisingFacilityObjects = raisingFacility.map(sequelizeToObject);
-      const isAdmin = req.session.user?.is_admin || false;
 
-      const updatedraisingFacility = raisingFacilityObjects.map((facility) => ({
-        ...facility,
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+      
+      const updatedraisingFacility = raisingFacilityObjects.map((raisingFacility) => ({
+        ...raisingFacility,
         can_edit: isAdmin,
       }));
 
-      res.render("./raisingFacility/raisingFacility", {
+      // Trả về dữ liệu (có thể dùng render hoặc json)
+      return res.render("./raisingFacility/raisingFacility", {
         raisingFacility: updatedraisingFacility,
       });
     } catch (err) {
