@@ -20,9 +20,17 @@ class DisposalFacilityController {
       // Chuyển đổi dữ liệu thành plain object (nếu cần)
       const disposalFacilityObjects = disposalFacility.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+      
+      const updateddisposalFacility = disposalFacilityObjects.map((disposalFacility) => ({
+        ...disposalFacility,
+        can_edit: isAdmin,
+      }));
+
       // Trả về dữ liệu (có thể dùng render hoặc json)
       return res.render("./disposalFacility/disposalFacility", {
-        disposalFacility: disposalFacilityObjects,
+        disposalFacility: updateddisposalFacility,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);

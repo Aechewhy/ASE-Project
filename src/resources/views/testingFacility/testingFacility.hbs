@@ -21,12 +21,14 @@
           <a href="/testingFacility/{{this.id}}">
             <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
           </a>
+        {{#if this.can_edit}}
           <a href="/testingFacility/{{this.id}}/edit">
             <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
           </a>
           <a href="#">
             <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-testingFacility-modal">Xoá</button>
           </a>
+        {{/if}}
         </div>
       </td>
     </tr>

@@ -15,9 +15,17 @@ class RaisingFacilityController {
       // Chuyển đổi dữ liệu thành plain object (nếu cần)
       const raisingFacilityObjects = raisingFacility.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+      
+      const updatedraisingFacility = raisingFacilityObjects.map((raisingFacility) => ({
+        ...raisingFacility,
+        can_edit: isAdmin,
+      }));
+
       // Trả về dữ liệu (có thể dùng render hoặc json)
       return res.render("./raisingFacility/raisingFacility", {
-        raisingFacility: raisingFacilityObjects,
+        raisingFacility: updatedraisingFacility,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);

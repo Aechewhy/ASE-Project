@@ -28,9 +28,17 @@ class VetFacilityController {
       const vetFacilityObjects =
       vetFacility.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+            
+      const updatedvetFacility = vetFacilityObjects.map((vetFacility) => ({
+          ...vetFacility,
+          can_edit: isAdmin,
+      }));
+
       // Trả về dữ liệu
       return res.render("./vetFacility/vetFacility", {
-        vetFacility: vetFacilityObjects,
+        vetFacility: updatedvetFacility,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu vetFacility:", err);

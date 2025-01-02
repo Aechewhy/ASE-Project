@@ -16,9 +16,17 @@ class SlaughterhouseController {
             // Chuyển đổi dữ liệu thành plain object (nếu cần)
             const slaughterhouseObjects = slaughterhouse.map(sequelizeToObject);
 
+            // Kiểm tra quyền admin từ session
+            const isAdmin = req.session.user?.is_admin || false;
+            
+            const updatedslaughterhouse = slaughterhouseObjects.map((slaughterhouse) => ({
+                ...slaughterhouse,
+                can_edit: isAdmin,
+            }));
+
             // Trả về dữ liệu (có thể dùng render hoặc json)
             return res.render("./slaughterhouse/slaughterhouse", {
-                slaughterhouse: slaughterhouseObjects,
+                slaughterhouse: updatedslaughterhouse,
             });
         } catch (err) {
             console.error("Lỗi khi lấy dữ liệu:", err);

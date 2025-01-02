@@ -1,5 +1,4 @@
 
-
   <h1 class="mt-4">Danh sách cơ quan chứng nhận</h1>
   <table class="table table-bordered table-hover mt-4">
     <thead>
@@ -19,12 +18,14 @@
             <a href="/certificateFacility/{{this.id}}">
               <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chi tiết</button>
             </a>
+          {{#if this.can_edit}}
             <a href="/certificateFacility/{{this.id}}/edit">
              <button type="button" class="btn btn-secondary mr-1" data-id="{{this.id}}">Chỉnh sửa</button>
             </a>
             <a href="#">
               <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-certificateFacility-modal">Xoá</button>
             </a>
+          {{/if}}
           </div>
         </td>
       </tr>

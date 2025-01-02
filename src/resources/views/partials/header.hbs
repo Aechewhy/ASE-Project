@@ -1,54 +1,57 @@
 <header class="header">
-    <a class="navbar-brand" href="#">Quản lý chăn nuôi</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand" href="#">Quản lý chăn nuôi</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <!-- Hiển thị phần "User" nếu người dùng là admin -->
+      {{#if user.is_admin}}
+      <li class="nav-item">
+        <a class="nav-link" href="/user">Người dùng</a>
+      </li>
+      {{/if}}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Danh mục
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/certificate">Chứng chỉ</a>
+          <a class="dropdown-item" href="/certificateFacility">Cơ sở chứng nhận</a>
+          <a class="dropdown-item" href="/raisingFacility">Cơ sở chăn nuôi</a>
+          <a class="dropdown-item" href="/processingFacility">Cơ sở chế biến</a>
+        </div>
+      </li>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/user">Người dùng</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Danh mục
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/certificate">Chứng chỉ</a>
-            <a class="dropdown-item" href="/certificateFacility">Cơ sở chứng nhận</a>
-            <a class="dropdown-item" href="/raisingFacility">Cơ sở chăn nuôi</a>
-            <a class="dropdown-item" href="/processingFacility">Cơ sở chế biến</a>
+      <!-- Hiển thị phần "Tạo mới" nếu người dùng là admin -->
+      {{#if user.is_admin}}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Tạo mới
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/certificate/create">Thêm chứng chỉ</a>
+          <a class="dropdown-item" href="/certificateFacility/create">Thêm cơ sở chứng nhận</a>
+          <a class="dropdown-item" href="/processingFacility/create">Thêm cơ sở chế biến</a>
+        </div>
+      </li>
+      {{/if}}
+    </ul>
 
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tạo mới
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/certificate/create">Thêm chứng chỉ</a>
-            <a class="dropdown-item" href="/certificateFacility/create">Thêm cơ sở chứng nhận</a>
-            <a class="dropdown-item" href="/processingFacility/create">Thêm cơ sở chế biến</a>
-          </div>
+    <!-- Thông báo quyền quản trị -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <span class="navbar-text">
+          {{#if user.is_admin}}
+            Bạn đang có quyền quản trị
+          {{else}}
+            Bạn đang không có quyền quản trị
+          {{/if}}
+        </span>
+      </li>
+    </ul>
+  </div>
 </header>

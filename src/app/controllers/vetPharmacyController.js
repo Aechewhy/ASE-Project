@@ -13,8 +13,16 @@ class VetPharmacyController {
 
       const vetPharmacyObjects = vetPharmacy.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+            
+      const updatedvetPharmacy = vetPharmacyObjects.map((vetPharmacy) => ({
+          ...vetPharmacy,
+          can_edit: isAdmin,
+      }));
+
       return res.render("./vetPharmacy/vetPharmacy", {
-        vetPharmacy: vetPharmacyObjects,
+        vetPharmacy: updatedvetPharmacy,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);

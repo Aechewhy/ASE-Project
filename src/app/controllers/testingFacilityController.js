@@ -15,8 +15,16 @@ class TestingFacilityController {
 
       const testingFacilityObjects = testingFacility.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+            
+      const updatedstestingFacility = testingFacilityObjects.map((testingFacility) => ({
+          ...testingFacility,
+          can_edit: isAdmin,
+      }));
+
       return res.render("./testingFacility/testingFacility", {
-        testingFacility: testingFacilityObjects,
+        testingFacility: updatedstestingFacility,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);

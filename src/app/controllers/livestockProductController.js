@@ -18,9 +18,17 @@ class LivestockProductController {//
       // Chuyển đổi dữ liệu thành plain object (nếu cần)
       const livestockProducttObjects = livestockProduct.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+      
+      const updatedlivestockProduct = livestockProducttObjects.map((livestockProduct) => ({
+        ...livestockProduct,
+        can_edit: isAdmin,
+      }));
+
       // Trả về dữ liệu (có thể dùng render hoặc json)
       return res.render("./livestockProduct/livestockProduct", {
-        livestockProduct: livestockProducttObjects,
+        livestockProduct: updatedlivestockProduct,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);

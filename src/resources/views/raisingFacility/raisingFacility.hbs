@@ -21,12 +21,14 @@
             <a href="/raisingFacility/{{this.id}}">
               <button type="button" class="btn btn-secondary mr-1">Chi tiết</button>
             </a>
+          {{#if this.can_edit}}
             <a href="/raisingFacility/{{this.id}}/edit">
              <button type="button" class="btn btn-secondary mr-1">Chỉnh sửa</button>
             </a>
             <a href="#">
               <button type="button" class="btn btn-secondary">Xoá</button>
             </a>
+          {{/if}}
           </div>
         </td>
       </tr>
