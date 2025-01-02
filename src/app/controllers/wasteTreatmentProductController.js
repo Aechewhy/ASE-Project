@@ -20,9 +20,17 @@ class WasteTreatmentProductController {
             const wasteTreatmentProductObjects =
                 wasteTreatmentProduct.map(sequelizeToObject);
 
+             // Kiểm tra quyền admin từ session
+            const isAdmin = req.session.user?.is_admin || false;
+                    
+            const updatedwasteTreatmentProduct = wasteTreatmentProductObjects.map((wasteTreatmentProduct) => ({
+                ...wasteTreatmentProduct,
+                can_edit: isAdmin,
+            }));
+
             // Trả về dữ liệu (có thể dùng render hoặc json)
             return res.render("./wasteTreatmentProduct/wasteTreatmentProduct", {
-                wasteTreatmentProduct: wasteTreatmentProductObjects,
+                wasteTreatmentProduct: updatedwasteTreatmentProduct,
             });
         } catch (err) {
             console.error("Lỗi khi lấy dữ liệu:", err);

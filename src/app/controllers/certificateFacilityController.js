@@ -28,9 +28,17 @@ class CertificateFacilityController {
       const certificateFacilityObjects =
         certificateFacilities.map(sequelizeToObject);
 
+        // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+      
+      const updatedcertificateFacilities = certificateFacilityObjects.map((certificateFacility) => ({
+        ...certificateFacility,
+        can_edit: isAdmin,
+      }));
+
       // Trả về dữ liệu
       return res.render("./certificateFacility/certificateFacility", {
-        certificateFacility: certificateFacilityObjects,
+        certificateFacility: updatedcertificateFacilities,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu certificateFacility:", err);

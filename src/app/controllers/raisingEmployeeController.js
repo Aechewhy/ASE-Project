@@ -18,9 +18,17 @@ class RaisingEmployeeController {//
       // Chuyển đổi dữ liệu thành plain object (nếu cần)
       const raisingEmployeetObjects = raisingEmployee.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+      
+      const updatedraisingEmployee = raisingEmployeetObjects.map((raisingEmployee) => ({
+        ...raisingEmployee,
+        can_edit: isAdmin,
+      }));
+
       // Trả về dữ liệu (có thể dùng render hoặc json)
       return res.render("./raisingEmployee/raisingEmployee", {
-        raisingEmployee: raisingEmployeetObjects,
+        raisingEmployee: updatedraisingEmployee,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);

@@ -28,9 +28,17 @@ class WasteTreatmentFacilityController {
       const wasteTreatmentFacilityObjects =
       wasteTreatmentFacility.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+            
+      const updatedwasteTreatmentFacility = wasteTreatmentFacilityObjects.map((wasteTreatmentFacility) => ({
+          ...wasteTreatmentFacility,
+          can_edit: isAdmin,
+      }));
+
       // Trả về dữ liệu
       return res.render("./wasteTreatmentFacility/wasteTreatmentFacility", {
-        wasteTreatmentFacility: wasteTreatmentFacilityObjects,
+        wasteTreatmentFacility: updatedwasteTreatmentFacility,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu certificateFacility:", err);

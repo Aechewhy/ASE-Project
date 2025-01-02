@@ -15,9 +15,17 @@ class UserController {
       // Chuyển đổi dữ liệu thành plain object (nếu cần)
       const userObjects = users.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+            
+      const updatedusers = userObjects.map((users) => ({
+          ...users,
+          can_edit: isAdmin,
+      }));
+
       // Trả về dữ liệu (có thể dùng render hoặc json)
       return res.render("./user/user", {
-        users: userObjects,
+        users: updatedusers,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu người dùng:", err);

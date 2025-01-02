@@ -17,10 +17,18 @@ class CertificateController {
 
       // Chuyển đổi dữ liệu thành plain object (nếu cần)
       const certificateObjects = certificate.map(sequelizeToObject);
+      
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+      
+      const updatedCertificates = certificateObjects.map((certificate) => ({
+        ...certificate,
+        can_edit: isAdmin,
+      }));
 
       // Trả về dữ liệu (có thể dùng render hoặc json)
       return res.render("./certificate/certificate", {
-        certificate: certificateObjects,
+        certificate: updatedCertificates,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);

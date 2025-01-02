@@ -10,13 +10,13 @@ User.init(
     email: { type: DataTypes.STRING(100) },
     phone_number: { type: DataTypes.STRING(100) },
     is_admin: { type: DataTypes.BOOLEAN, defaultValue: false },
+    password: { type: DataTypes.STRING(255) },
   },
   {
     sequelize,
     modelName: "user",
     tableName: "user",
     timestamps: false,
-    logging: false,
   },
 );
 

@@ -18,9 +18,17 @@ class ProcessingFacilityController {
       // Chuyển đổi dữ liệu thành plain object (nếu cần)
       const processingFacilitytObjects = processingFacility.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+      
+      const updatedprocessingFacility = processingFacilitytObjects.map((processingFacility) => ({
+        ...processingFacility,
+        can_edit: isAdmin,
+      }));
+
       // Trả về dữ liệu (có thể dùng render hoặc json)
       return res.render("./processingFacility/processingFacility", {
-        processingFacility: processingFacilitytObjects,
+        processingFacility: updatedprocessingFacility,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);

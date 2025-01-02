@@ -1,36 +1,112 @@
+<div class="row mb-3 mt-4">
+  <div class="col-md-6">
+    <input type="text" id="search-input" class="form-control" placeholder="Tìm kiếm cơ sở chăn nuôi...">
+  </div>
+</div>
 
+<h1 class="mt-4">Danh sách cơ sở chăn nuôi</h1>
+<table class="table table-bordered table-hover mt-4">
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>ID cơ sở</th>
+      <th>Tên cơ sở</th>
+      <th>Động vật</th>
+      <th>Chủ sở hữu</th>
+      <th>Địa chỉ</th>
+      <th>Quy mô</th>
+      <th>Số lượng nhân viên</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each raisingFacility}}
+    <tr>
+      <td>{{inc @index}}</td>
+      <td>{{this.id}}</td>
+      <td>{{this.name}}</td>
+      <td>{{this.livestock_type}}</td>
+      <td>{{this.owner}}</td>
+      <td>{{this.location}}</td>
+      <td>{{this.size}}</td>
+      <td>{{this.employee_number}}</td>
+      <td>
+        <div class="btn-group" role="group">
+          <a href="/raisingFacility/{{this.id}}">
+            <button type="button" class="btn btn-secondary mr-1">Chi tiết</button>
+          </a>
+          {{#if this.can_edit}}
+          <a href="/raisingFacility/{{this.id}}/edit">
+            <button type="button" class="btn btn-secondary mr-1">Chỉnh sửa</button>
+          </a>
+          <a href="#">
+            <button type="button" class="btn btn-secondary" data-id="{{this.id}}" data-toggle="modal" data-target="#delete-raisingFacility-modal">Xoá</button>
+          </a>
+          {{/if}}
+        </div>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
 
-  <h1 class="mt-4">Danh sách cơ sở chăn nuôi</h1>
-  <table class="table table-bordered table-hover mt-4">
-    <thead>
-      <tr>
-        <th>STT</th>
-        <th>ID cơ quan</th>
-        <th>Tên cơ quan</th>
-        <th>Thao tác</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each raisingFacility}}
-      <tr>
-        <td>{{inc @index}}</td>
-        <td>{{this.id}}</td>
-        <td>{{this.name}}</td>
-        <td>
-          <div class="btn-group" role="group">
-            <a href="/raisingFacility/{{this.id}}">
-              <button type="button" class="btn btn-secondary mr-1">Chi tiết</button>
-            </a>
-            <a href="/raisingFacility/{{this.id}}/edit">
-             <button type="button" class="btn btn-secondary mr-1">Chỉnh sửa</button>
-            </a>
-            <a href="#">
-              <button type="button" class="btn btn-secondary">Xoá</button>
-            </a>
-          </div>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
+<!-- Modal Xoá -->
+<div class="modal fade" id="delete-raisingFacility-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xoá cơ sở chăn nuôi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn chắc chắn muốn xoá cơ sở chăn nuôi này chứ?
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-raisingFacility" type="button" class="btn btn-danger">Xoá bỏ</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+      </div>
+    </div>
+    <form name="delete-raisingFacility-form" method="POST"></form>
+  </div>
+</div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var deleteButton = document.getElementById('btn-delete-raisingFacility');
+    var deleteForm = document.forms['delete-raisingFacility-form'];
+
+    $('#delete-raisingFacility-modal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      var itemId = button.data('id');
+
+      deleteButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        deleteForm.action = `/raisingFacility/${itemId}?_method=DELETE`;
+        deleteForm.submit();
+      });
+    });
+
+    var searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('keyup', function () {
+      var filter = searchInput.value.toLowerCase();
+      var table = document.querySelector('table tbody');
+      var rows = table.getElementsByTagName('tr');
+
+      for (var i = 0; i < rows.length; i++) {
+        var idCell = rows[i].getElementsByTagName('td')[1];
+        var nameCell = rows[i].getElementsByTagName('td')[2];
+        if (idCell && nameCell) {
+          var idText = idCell.textContent || idCell.innerText;
+          var nameText = nameCell.textContent || nameCell.innerText;
+          if (idText.toLowerCase().indexOf(filter) > -1 || nameText.toLowerCase().indexOf(filter) > -1) {
+            rows[i].style.display = "";
+          } else {
+            rows[i].style.display = "none";
+          }
+        }
+      }
+    });
+  });
+</script>
