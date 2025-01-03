@@ -36,6 +36,14 @@ class VetFacilityController {
         can_edit: isAdmin,
       }));
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+            
+      const updatedvetFacility = vetFacilityObjects.map((vetFacility) => ({
+          ...vetFacility,
+          can_edit: isAdmin,
+      }));
+
       // Trả về dữ liệu
       return res.render("./vetFacility/vetFacility", {
         vetFacility: updatedvetFacility,

@@ -29,6 +29,7 @@ class RaisingFacilityController {
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);
       next(err);
+      next(err);
     }
   }
 

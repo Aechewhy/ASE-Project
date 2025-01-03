@@ -18,6 +18,14 @@ class CertificateController {
 
       // Chuyển đổi dữ liệu thành plain object (nếu cần)
       const certificateObjects = certificate.map(sequelizeToObject);
+      
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+      
+      const updatedCertificates = certificateObjects.map((certificate) => ({
+        ...certificate,
+        can_edit: isAdmin,
+      }));
 
       // Kiểm tra quyền admin từ session
       const isAdmin = req.session.user?.is_admin || false;
