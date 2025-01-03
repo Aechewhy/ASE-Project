@@ -1,8 +1,9 @@
 const { CertificateFacility } = require("../models");
 const { Certificate } = require("../models");
-const { sequelizeToObject,
-        mutipleSequelizeToObject
-      } = require("../../util/mysql");
+const {
+  sequelizeToObject,
+  mutipleSequelizeToObject,
+} = require("../../util/mysql");
 const { Op } = require("sequelize");
 
 class CertificateFacilityController {
@@ -28,9 +29,19 @@ class CertificateFacilityController {
       const certificateFacilityObjects =
         certificateFacilities.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+
+      const updatedcertificateFacilities = certificateFacilityObjects.map(
+        (certificateFacility) => ({
+          ...certificateFacility,
+          can_edit: isAdmin,
+        }),
+      );
+
       // Trả về dữ liệu
       return res.render("./certificateFacility/certificateFacility", {
-        certificateFacility: certificateFacilityObjects,
+        certificateFacility: updatedcertificateFacilities,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu certificateFacility:", err);
@@ -55,7 +66,7 @@ class CertificateFacilityController {
       })
       .catch(next);
   }
-    
+
   //[GET] /certificateFacility/create
   create(req, res, next) {
     res.render("./certificateFacility/create");
@@ -64,18 +75,14 @@ class CertificateFacilityController {
   //[POST] /certificate/store
   store(req, res, next) {
     // Lấy dữ liệu từ body
-    const { id, name} = req.body;
+    const { id, name } = req.body;
 
     // Chuyển đổi id sang số nguyên
     const certificateFacilityId = parseInt(id, 10); // base 10
 
     // Kiểm tra dữ liệu
     if (!certificateFacilityId || !name) {
-      return res
-        .status(400)
-        .send(
-          "ID và tên không được để trống.",
-        );
+      return res.status(400).send("ID và tên không được để trống.");
     }
 
     CertificateFacility.create({
@@ -96,17 +103,17 @@ class CertificateFacilityController {
     Certificate.findAll({
       attributes: ["id", "name"], // Chỉ lấy id và name
     })
-    .then((certificates) => {
-      return CertificateFacility.findOne({
-        where: { id: req.params.id },
-      }).then((certificateFacility) => {
-        res.render("./certificateFacility/edit", {
-          certificateFacility: sequelizeToObject(certificateFacility),
-          certificates: mutipleSequelizeToObject(certificates),
+      .then((certificates) => {
+        return CertificateFacility.findOne({
+          where: { id: req.params.id },
+        }).then((certificateFacility) => {
+          res.render("./certificateFacility/edit", {
+            certificateFacility: sequelizeToObject(certificateFacility),
+            certificates: mutipleSequelizeToObject(certificates),
+          });
         });
-      });
-    })
-    .catch(next);
+      })
+      .catch(next);
   }
 
   //[PUT] /certificateFacility/:id
@@ -116,30 +123,29 @@ class CertificateFacilityController {
     const certificateFacilityId = parseInt(req.params.id, 10); // Sử dụng id từ URL params
 
     // Kiểm tra dữ liệu đầu vào
-    if ( !certificateFacilityId || !name ) {
-        return res.status(400).json({
-            message: "ID và tên không được để trống."
-        });
+    if (!certificateFacilityId || !name) {
+      return res.status(400).json({
+        message: "ID và tên không được để trống.",
+      });
     }
 
-  // Thực hiện cập nhật với điều kiện where rõ ràng
-  CertificateFacility.update(
-      {name},
+    // Thực hiện cập nhật với điều kiện where rõ ràng
+    CertificateFacility.update(
+      { name },
       {
-          where: { id: certificateFacilityId } // Điều kiện where
-      }
-  )
-  .then(() => res.redirect("./"))
-  .catch(next)
+        where: { id: certificateFacilityId }, // Điều kiện where
+      },
+    )
+      .then(() => res.redirect("./"))
+      .catch(next);
   }
 
   //[DELETE] /certificate/:id
   destroy(req, res, next) {
     CertificateFacility.destroy({ where: { id: req.params.id } })
-        .then(() => res.redirect('./'))
-        .catch(next);
+      .then(() => res.redirect("./"))
+      .catch(next);
   }
-
 }
 
 module.exports = new CertificateFacilityController();

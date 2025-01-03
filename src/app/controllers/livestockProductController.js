@@ -1,15 +1,17 @@
-const LivestockProduct = require("../models/livestockProductModel");// 1 hoa
+const LivestockProduct = require("../models/livestockProductModel"); // 1 hoa
 const RaisingFacility = require("../models/raisingFacilityModel");
-const { sequelizeToObject,
-        mutipleSequelizeToObject
-      } = require("../../util/mysql");
+const {
+  sequelizeToObject,
+  mutipleSequelizeToObject,
+} = require("../../util/mysql");
 
-class LivestockProductController {//
+class LivestockProductController {
+  //
   // [GET] /livestockProduct
   async livestockProduct(req, res, next) {
     try {
       // Tìm tất cả livestockProduct
-      const livestockProduct = await LivestockProduct.findAll();// 2
+      const livestockProduct = await LivestockProduct.findAll(); // 2
 
       if (!livestockProduct || livestockProduct.length === 0) {
         return res.status(404).send("Không tìm thấy dữ liệu.");
@@ -18,9 +20,19 @@ class LivestockProductController {//
       // Chuyển đổi dữ liệu thành plain object (nếu cần)
       const livestockProducttObjects = livestockProduct.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+
+      const updatedlivestockProduct = livestockProducttObjects.map(
+        (livestockProduct) => ({
+          ...livestockProduct,
+          can_edit: isAdmin,
+        }),
+      );
+
       // Trả về dữ liệu (có thể dùng render hoặc json)
       return res.render("./livestockProduct/livestockProduct", {
-        livestockProduct: livestockProducttObjects,
+        livestockProduct: updatedlivestockProduct,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);
@@ -30,7 +42,8 @@ class LivestockProductController {//
 
   //[GET] /livestockProduct/:id
   detail(req, res, next) {
-    LivestockProduct.findOne({//
+    LivestockProduct.findOne({
+      //
       where: { id: req.params.id },
       include: [
         {
@@ -71,15 +84,12 @@ class LivestockProductController {//
     const raisingFacilityId = parseInt(raising_facility_id, 10); // base 10
 
     // Kiểm tra dữ liệu
-    if ( !name ) {
-      return res
-        .status(400)
-        .send(
-          "Thông tin không được để trống",
-        );
+    if (!name) {
+      return res.status(400).send("Thông tin không được để trống");
     }
 
-    LivestockProduct.create({//
+    LivestockProduct.create({
+      //
       id: livestockProductId,
       name,
       raising_facility_id: raisingFacilityId,
@@ -93,56 +103,52 @@ class LivestockProductController {//
       });
   }
 
-
-// [GET] /certificateFacility/:id/edit
-edit(req, res, next) {
-  LivestockProduct.findOne({//
+  // [GET] /certificateFacility/:id/edit
+  edit(req, res, next) {
+    LivestockProduct.findOne({
+      //
       where: { id: req.params.id },
-    }).then((livestockProduct) => {
-      res.render("./livestockProduct/edit", {
-        livestockProduct: sequelizeToObject(livestockProduct),
-      });
     })
-  .catch(next);
-} 
+      .then((livestockProduct) => {
+        res.render("./livestockProduct/edit", {
+          livestockProduct: sequelizeToObject(livestockProduct),
+        });
+      })
+      .catch(next);
+  }
 
   //[PUT] /livestockProduct/:id
   update(req, res, next) {
     // Lấy dữ liệu từ body và params
-    const {name} = req.body;
+    const { name } = req.body;
     const livestockProductId = parseInt(req.params.id, 10); // Sử dụng id từ URL params
 
     // Kiểm tra dữ liệu đầu vào
-    if ( !livestockProductId || !name) {
-        return res.status(400).json({
-            message: "Thông tin không được để trống."
-        });
+    if (!livestockProductId || !name) {
+      return res.status(400).json({
+        message: "Thông tin không được để trống.",
+      });
     }
 
-  // Thực hiện cập nhật với điều kiện where rõ ràng
-  LivestockProduct.update(//
+    // Thực hiện cập nhật với điều kiện where rõ ràng
+    LivestockProduct.update(
+      //
       {
         name,
       },
       {
-          where: { id: livestockProductId } // Điều kiện where
-      }
-  )
-  .then(() => res.redirect("./"))
-  .catch(next)
-}
+        where: { id: livestockProductId }, // Điều kiện where
+      },
+    )
+      .then(() => res.redirect("./"))
+      .catch(next);
+  }
 
   //[DELETE] /certificate/:id
   destroy(req, res, next) {
-    LivestockProduct.destroy({ where: { id: req.params.id } })//
-        .then(() => res.redirect('./'))
-        .catch(next);
+    LivestockProduct.destroy({ where: { id: req.params.id } }) //
+      .then(() => res.redirect("./"))
+      .catch(next);
   }
-
-
-
-
-
-
 }
-module.exports = new LivestockProductController();//
+module.exports = new LivestockProductController(); //

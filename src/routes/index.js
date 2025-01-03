@@ -5,8 +5,6 @@ const aboutRouter = require("./aboutRoutes");
 const processingFacilityRouter = require("./processingFacilityRoutes");
 const slaughterhouseRouter = require("./slaughterhouseRoutes");
 const raisingFacilityRouter = require("./raisingFacilityRoutes");
-const searchRouter = require("./searchRoutes");
-const siteRouter = require("./site");
 const userRouter = require("./userRoutes");
 const wasteTreatmentFacilityRouter = require("./wasteTreatmentFacilityRoutes");
 const wasteTreatmentProductRouter = require("./wasteTreatmentProductRoutes");
@@ -14,25 +12,37 @@ const vetFacilityRouter = require("./vetFacilityRoutes");
 const disposalFacilityRouter = require("./disposalFacilityRoutes");
 const raisingEmployeeRouter = require("./raisingEmployeeRoutes");
 const livestockProductRouter = require("./livestockProductRoutes");
+const testingFacilityRoutes = require("./testingFacilityRoutes");
+const vetPharmacyRoutes = require("./vetPharmacyRoutes");
+const { isAuthenticated } = require("../app/middlewares/authMiddleware");
+const { about } = require("../app/controllers/aboutController");
 
 function route(app) {
-      app.use("/disposalFacility", disposalFacilityRouter);
-
-  app.use("/vetFacility", vetFacilityRouter);
-    app.use("/", siteRouter);
-    app.use("/certificate", certificateRouter);
-    app.use("/certificateFacility", certificateFacilityRouter);
-    app.use("/login", loginRouter);
-    app.use("/about", aboutRouter);
-    app.use("/processingFacility", processingFacilityRouter);
-    app.use("/raisingFacility", raisingFacilityRouter);
-    app.use("/search", searchRouter);
-    app.use("/slaughterhouse", slaughterhouseRouter);
-    app.use("/user", userRouter);
-    app.use("/wasteTreatmentFacility", wasteTreatmentFacilityRouter);
-    app.use("/wasteTreatmentProduct", wasteTreatmentProductRouter);
-    app.use("/raisingEmployee", raisingEmployeeRouter);
-    app.use("/livestockProduct", livestockProductRouter);
+  app.use("/testingFacility", isAuthenticated, testingFacilityRoutes);
+  app.use("/vetPharmacy", isAuthenticated, vetPharmacyRoutes);
+  app.use("/disposalFacility", isAuthenticated, disposalFacilityRouter);
+  app.use("/vetFacility", isAuthenticated, vetFacilityRouter);
+  app.use("/certificate", isAuthenticated, certificateRouter);
+  app.use("/certificateFacility", isAuthenticated, certificateFacilityRouter);
+  app.use("/login", loginRouter);
+  app.use("/about", isAuthenticated, aboutRouter);
+  app.use("/processingFacility", isAuthenticated, processingFacilityRouter);
+  app.use("/raisingFacility", isAuthenticated, raisingFacilityRouter);
+  app.use("/slaughterhouse", isAuthenticated, slaughterhouseRouter);
+  app.use("/user", isAuthenticated, userRouter);
+  app.use(
+    "/wasteTreatmentFacility",
+    isAuthenticated,
+    wasteTreatmentFacilityRouter,
+  );
+  app.use(
+    "/wasteTreatmentProduct",
+    isAuthenticated,
+    wasteTreatmentProductRouter,
+  );
+  app.use("/raisingEmployee", isAuthenticated, raisingEmployeeRouter);
+  app.use("/livestockProduct", isAuthenticated, livestockProductRouter);
+  app.use("/", isAuthenticated, aboutRouter);
 }
 
 module.exports = route;

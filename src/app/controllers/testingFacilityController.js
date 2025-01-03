@@ -1,7 +1,10 @@
 const TestingFacility = require("../models/testingFacilityModel");
 const WasteTreatmentFacility = require("../models/wasteTreatmentFacilityModel");
 const WasteTreatmentProduct = require("../models/wasteTreatmentProductModel");
-const { sequelizeToObject, mutipleSequelizeToObject } = require("../../util/mysql");
+const {
+  sequelizeToObject,
+  mutipleSequelizeToObject,
+} = require("../../util/mysql");
 
 class TestingFacilityController {
   // [GET] /testingFacility
@@ -15,8 +18,18 @@ class TestingFacilityController {
 
       const testingFacilityObjects = testingFacility.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+
+      const updatedstestingFacility = testingFacilityObjects.map(
+        (testingFacility) => ({
+          ...testingFacility,
+          can_edit: isAdmin,
+        }),
+      );
+
       return res.render("./testingFacility/testingFacility", {
-        testingFacility: testingFacilityObjects,
+        testingFacility: updatedstestingFacility,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);
@@ -114,7 +127,13 @@ class TestingFacilityController {
     const { name, location, facility_id, product_id } = req.body;
     const testingFacilityId = parseInt(req.params.id, 10);
 
-    if (!testingFacilityId || !name || !location || !facility_id || !product_id) {
+    if (
+      !testingFacilityId ||
+      !name ||
+      !location ||
+      !facility_id ||
+      !product_id
+    ) {
       return res.status(400).json({
         message: "Thông tin không được để trống.",
       });
@@ -129,7 +148,7 @@ class TestingFacilityController {
       },
       {
         where: { id: testingFacilityId },
-      }
+      },
     )
       .then(() => res.redirect("./"))
       .catch(next);

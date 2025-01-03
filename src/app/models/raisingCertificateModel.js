@@ -2,7 +2,7 @@ const { DataTypes, Model } = require("sequelize");
 const { sequelize } = require("../../config/database");
 
 const RaisingCertificate = sequelize.define(
-  'RaisingCertificate',
+  "RaisingCertificate",
   {
     raising_facility_id: {
       type: DataTypes.INTEGER,

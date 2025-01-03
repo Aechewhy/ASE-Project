@@ -1,0 +1,49 @@
+<h3 class="mt-4">Chỉnh sửa cơ sở chăn nuôi</h3>
+
+<form method="POST" action="/raisingFacility/{{raisingFacility.id}}?_method=PUT">
+  <div class="form-group">
+    <label for="name">Tên cơ sở</label>
+    <input type="text" class="form-control" id="name" name="name" value="{{raisingFacility.name}}">
+  </div>
+  <div class="form-group">
+    <label for="livestock_type">Động vật</label>
+    <input type="text" class="form-control" id="livestock_type" name="livestock_type" value="{{raisingFacility.livestock_type}}">
+  </div>
+  <div class="form-group">
+    <label for="owner">Chủ sở hữu</label>
+    <input type="text" class="form-control" id="owner" name="owner" value="{{raisingFacility.owner}}">
+  </div>
+  <div class="form-group">
+    <label for="location">Địa chỉ</label>
+    <input type="text" class="form-control" id="location" name="location" value="{{raisingFacility.location}}">
+  </div>
+  <div class="form-group">
+    <label for="size">Quy mô</label>
+    <input type="text" class="form-control" id="size" name="size" value="{{raisingFacility.size}}">
+  </div>
+  <div class="form-group">
+    <label for="employee_number">Số lượng nhân viên</label>
+    <input type="text" class="form-control" id="employee_number" name="employee_number" value="{{raisingFacility.employee_number}}">
+  </div>
+  <div class="form-group">
+    <label>Chứng chỉ</label>
+    <div class="form-check">
+      {{#each certificates}}
+      <div>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="certificate_{{this.id}}"
+        name="certificate_ids[]"
+        value="{{this.id}}"
+        {{#if (includes ../selectedCertificates this.id)}}checked{{/if}}
+      >
+      <label class="form-check-label" for="certificate_{{this.id}}">
+        {{this.name}}
+      </label>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-4">Lưu thay đổi</button>
+</form>

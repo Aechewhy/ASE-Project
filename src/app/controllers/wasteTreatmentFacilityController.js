@@ -1,8 +1,9 @@
 const { WasteTreatmentFacility } = require("../models");
 const { WasteTreatmentProduct } = require("../models");
-const { sequelizeToObject,
-        mutipleSequelizeToObject
-      } = require("../../util/mysql");
+const {
+  sequelizeToObject,
+  mutipleSequelizeToObject,
+} = require("../../util/mysql");
 const { Op } = require("sequelize");
 
 class WasteTreatmentFacilityController {
@@ -14,7 +15,8 @@ class WasteTreatmentFacilityController {
         // Lấy thêm dữ liệu từ bảng liên kết
         include: [
           {
-            association: WasteTreatmentFacility.associations.wasteTreatmentProduct,
+            association:
+              WasteTreatmentFacility.associations.wasteTreatmentProduct,
           },
         ],
       });
@@ -26,11 +28,21 @@ class WasteTreatmentFacilityController {
 
       // Chuyển đổi dữ liệu thành plain object
       const wasteTreatmentFacilityObjects =
-      wasteTreatmentFacility.map(sequelizeToObject);
+        wasteTreatmentFacility.map(sequelizeToObject);
+
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+
+      const updatedwasteTreatmentFacility = wasteTreatmentFacilityObjects.map(
+        (wasteTreatmentFacility) => ({
+          ...wasteTreatmentFacility,
+          can_edit: isAdmin,
+        }),
+      );
 
       // Trả về dữ liệu
       return res.render("./wasteTreatmentFacility/wasteTreatmentFacility", {
-        wasteTreatmentFacility: wasteTreatmentFacilityObjects,
+        wasteTreatmentFacility: updatedwasteTreatmentFacility,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu certificateFacility:", err);
@@ -44,7 +56,8 @@ class WasteTreatmentFacilityController {
       where: { id: req.params.id },
       include: [
         {
-          association: WasteTreatmentFacility.associations.wasteTreatmentProduct,
+          association:
+            WasteTreatmentFacility.associations.wasteTreatmentProduct,
         },
       ],
     })
@@ -55,7 +68,7 @@ class WasteTreatmentFacilityController {
       })
       .catch(next);
   }
-    
+
   //[GET] /certificateFacility/create
   create(req, res, next) {
     res.render("./wasteTreatmentFacility/create");
@@ -71,11 +84,7 @@ class WasteTreatmentFacilityController {
 
     // Kiểm tra dữ liệu
     if (!wasteTreatmentFacilityId || !name || !location) {
-      return res
-        .status(400)
-        .send(
-          "ID, tên và đại chỉ không được để trống.",
-        );
+      return res.status(400).send("ID, tên và đại chỉ không được để trống.");
     }
 
     WasteTreatmentFacility.create({
@@ -95,13 +104,14 @@ class WasteTreatmentFacilityController {
   // [GET] /certificateFacility/:id/edit
   edit(req, res, next) {
     WasteTreatmentFacility.findOne({
-        where: { id: req.params.id },
-      }).then((wasteTreatmentFacility) => {
+      where: { id: req.params.id },
+    })
+      .then((wasteTreatmentFacility) => {
         res.render("./wasteTreatmentFacility/edit", {
           wasteTreatmentFacility: sequelizeToObject(wasteTreatmentFacility),
         });
       })
-    .catch(next);
+      .catch(next);
   }
 
   //[PUT] /certificateFacility/:id
@@ -111,30 +121,29 @@ class WasteTreatmentFacilityController {
     const wasteTreatmentFacilityId = parseInt(req.params.id, 10); // Sử dụng id từ URL params
 
     // Kiểm tra dữ liệu đầu vào
-    if ( !wasteTreatmentFacilityId || !name || !location) {
-        return res.status(400).json({
-            message: "ID, tên và địa chỉ không được để trống."
-        });
+    if (!wasteTreatmentFacilityId || !name || !location) {
+      return res.status(400).json({
+        message: "ID, tên và địa chỉ không được để trống.",
+      });
     }
 
-  // Thực hiện cập nhật với điều kiện where rõ ràng
-  WasteTreatmentFacility.update(
-      {name, location},
+    // Thực hiện cập nhật với điều kiện where rõ ràng
+    WasteTreatmentFacility.update(
+      { name, location },
       {
-          where: { id: wasteTreatmentFacilityId } // Điều kiện where
-      }
-  )
-  .then(() => res.redirect("./"))
-  .catch(next)
+        where: { id: wasteTreatmentFacilityId }, // Điều kiện where
+      },
+    )
+      .then(() => res.redirect("./"))
+      .catch(next);
   }
 
   //[DELETE] /certificate/:id
   destroy(req, res, next) {
     WasteTreatmentFacility.destroy({ where: { id: req.params.id } })
-        .then(() => res.redirect('./'))
-        .catch(next);
+      .then(() => res.redirect("./"))
+      .catch(next);
   }
-
 }
 
 module.exports = new WasteTreatmentFacilityController();

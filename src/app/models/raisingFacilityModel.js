@@ -1,4 +1,3 @@
-
 const { DataTypes, Model, STRING } = require("sequelize");
 const { sequelize } = require("../../config/database");
 

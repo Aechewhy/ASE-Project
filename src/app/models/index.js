@@ -20,17 +20,17 @@ Certificate.belongsTo(CertificateFacility, {
 });
 
 RaisingFacility.belongsToMany(Certificate, {
-  through: 'raising_certificate',
-  as: 'certificates', 
-  foreignKey: 'raising_facility_id',
-  otherKey: 'certificate_id',       
+  through: "raising_certificate",
+  as: "certificates",
+  foreignKey: "raising_facility_id",
+  otherKey: "certificate_id",
 });
 
 Certificate.belongsToMany(RaisingFacility, {
-  through: 'raising_certificate',
-  as: 'raisingFacility',
-  foreignKey: 'certificate_id',
-  otherKey: 'raising_facility_id',
+  through: "raising_certificate",
+  as: "raisingFacility",
+  foreignKey: "certificate_id",
+  otherKey: "raising_facility_id",
 });
 
 WasteTreatmentFacility.hasMany(WasteTreatmentProduct, {
@@ -53,7 +53,6 @@ LivestockProduct.belongsTo(RaisingFacility, {
   foreignKey: "raising_facility_id",
   as: "raisingFacility",
 });
-
 
 VetFacility.hasMany(DisposalFacility, {
   foreignKey: "vet_facility_id",

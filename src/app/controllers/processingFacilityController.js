@@ -1,8 +1,9 @@
 const ProcessingFacility = require("../models/processingFacilityModel");
 const RaisingFacility = require("../models/raisingFacilityModel");
-const { sequelizeToObject,
-        mutipleSequelizeToObject
-      } = require("../../util/mysql");
+const {
+  sequelizeToObject,
+  mutipleSequelizeToObject,
+} = require("../../util/mysql");
 
 class ProcessingFacilityController {
   // [GET] /certificate
@@ -16,11 +17,22 @@ class ProcessingFacilityController {
       }
 
       // Chuyển đổi dữ liệu thành plain object (nếu cần)
-      const processingFacilitytObjects = processingFacility.map(sequelizeToObject);
+      const processingFacilitytObjects =
+        processingFacility.map(sequelizeToObject);
+
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+
+      const updatedprocessingFacility = processingFacilitytObjects.map(
+        (processingFacility) => ({
+          ...processingFacility,
+          can_edit: isAdmin,
+        }),
+      );
 
       // Trả về dữ liệu (có thể dùng render hoặc json)
       return res.render("./processingFacility/processingFacility", {
-        processingFacility: processingFacilitytObjects,
+        processingFacility: updatedprocessingFacility,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);
@@ -48,9 +60,6 @@ class ProcessingFacilityController {
       .catch(next);
   }
 
-
-
-
   //[GET] /certificate/create
   create(req, res, next) {
     RaisingFacility.findAll({
@@ -74,12 +83,8 @@ class ProcessingFacilityController {
     const raisingFacilityId = parseInt(raising_facility_id, 10); // base 10
 
     // Kiểm tra dữ liệu
-    if ( !processFacilityId || !name || !location || !owner || !type ) {
-      return res
-        .status(400)
-        .send(
-          "Thông tin không được để trống",
-        );
+    if (!processFacilityId || !name || !location || !owner || !type) {
+      return res.status(400).send("Thông tin không được để trống");
     }
 
     ProcessingFacility.create({
@@ -99,59 +104,58 @@ class ProcessingFacilityController {
       });
   }
 
-//   //[GET] /certificate/:id/edit
-//   edit(req, res, next) {
-//     raisingFacility.findAll({
-//       attributes: ['id', 'name'], // Chỉ lấy id và name
-//     })
-//       .then((facility) => {
-//         return ProcessingFacility.findOne({
-//           where: { id: req.params.id },
-//         })
-//           .then((ProcessingFacility) => {
-//             res.render("./ProcessingFacility/edit", {
-//               raisingFacility: mutipleSequelizeToObject(facility),
-//               ProcessingFacility: sequelizeToObject(ProcessingFacility),
-//             });
-//           });
-//       })
-//       .catch(next); // Bắt lỗi nếu có bất kỳ Promise nào bị lỗi
-//   }  
+  //   //[GET] /certificate/:id/edit
+  //   edit(req, res, next) {
+  //     raisingFacility.findAll({
+  //       attributes: ['id', 'name'], // Chỉ lấy id và name
+  //     })
+  //       .then((facility) => {
+  //         return ProcessingFacility.findOne({
+  //           where: { id: req.params.id },
+  //         })
+  //           .then((ProcessingFacility) => {
+  //             res.render("./ProcessingFacility/edit", {
+  //               raisingFacility: mutipleSequelizeToObject(facility),
+  //               ProcessingFacility: sequelizeToObject(ProcessingFacility),
+  //             });
+  //           });
+  //       })
+  //       .catch(next); // Bắt lỗi nếu có bất kỳ Promise nào bị lỗi
+  //   }
 
-//   //[PUT] /certificate/:id
-//   update(req, res, next) {
-//     // Lấy dữ liệu từ body và params
-//     const { name, price, waste_treatment_facility } = req.body;
-//     const productId = parseInt(req.params.id, 10); // Sử dụng id từ URL params
+  //   //[PUT] /certificate/:id
+  //   update(req, res, next) {
+  //     // Lấy dữ liệu từ body và params
+  //     const { name, price, waste_treatment_facility } = req.body;
+  //     const productId = parseInt(req.params.id, 10); // Sử dụng id từ URL params
 
-//     // Kiểm tra dữ liệu đầu vào
-//     if (!productId || !name || !price) {
-//         return res.status(400).json({
-//             message: "ID, tên của sản phẩm và giá không được để trống."
-//         });
-//     }
+  //     // Kiểm tra dữ liệu đầu vào
+  //     if (!productId || !name || !price) {
+  //         return res.status(400).json({
+  //             message: "ID, tên của sản phẩm và giá không được để trống."
+  //         });
+  //     }
 
-//   // Thực hiện cập nhật với điều kiện where rõ ràng
-//   ProcessingFacility.update(
-//       {
-//           name,
-//           price,
-//           waste_treatment_facility
-//       },
-//       {
-//           where: { id: productId } // Điều kiện where
-//       }
-//   )
-//   .then(() => res.redirect("./"))
-//   .catch(next)
-// }
+  //   // Thực hiện cập nhật với điều kiện where rõ ràng
+  //   ProcessingFacility.update(
+  //       {
+  //           name,
+  //           price,
+  //           waste_treatment_facility
+  //       },
+  //       {
+  //           where: { id: productId } // Điều kiện where
+  //       }
+  //   )
+  //   .then(() => res.redirect("./"))
+  //   .catch(next)
+  // }
 
-//   //[DELETE] /certificate/:id
-//   destroy(req, res, next) {
-//     ProcessingFacility.destroy({ where: { id: req.params.id } })
-//         .then(() => res.redirect('./'))
-//         .catch(next);
-//   }
-
+  //   //[DELETE] /certificate/:id
+  //   destroy(req, res, next) {
+  //     ProcessingFacility.destroy({ where: { id: req.params.id } })
+  //         .then(() => res.redirect('./'))
+  //         .catch(next);
+  //   }
 }
 module.exports = new ProcessingFacilityController();

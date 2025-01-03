@@ -1,5 +1,8 @@
 const VetPharmacy = require("../models/vetPharmacyModel");
-const { sequelizeToObject, mutipleSequelizeToObject } = require("../../util/mysql");
+const {
+  sequelizeToObject,
+  mutipleSequelizeToObject,
+} = require("../../util/mysql");
 
 class VetPharmacyController {
   // [GET] /vetPharmacy
@@ -13,8 +16,16 @@ class VetPharmacyController {
 
       const vetPharmacyObjects = vetPharmacy.map(sequelizeToObject);
 
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+
+      const updatedvetPharmacy = vetPharmacyObjects.map((vetPharmacy) => ({
+        ...vetPharmacy,
+        can_edit: isAdmin,
+      }));
+
       return res.render("./vetPharmacy/vetPharmacy", {
-        vetPharmacy: vetPharmacyObjects,
+        vetPharmacy: updatedvetPharmacy,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu:", err);
@@ -46,7 +57,13 @@ class VetPharmacyController {
 
     const vetPharmacyId = parseInt(id, 10);
 
-    if (!vetPharmacyId || !name || !location || !contact_number || !opening_hours) {
+    if (
+      !vetPharmacyId ||
+      !name ||
+      !location ||
+      !contact_number ||
+      !opening_hours
+    ) {
       return res.status(400).send("Thông tin không được để trống");
     }
 
@@ -82,7 +99,13 @@ class VetPharmacyController {
     const { name, location, contact_number, opening_hours } = req.body;
     const vetPharmacyId = parseInt(req.params.id, 10);
 
-    if (!vetPharmacyId || !name || !location || !contact_number || !opening_hours) {
+    if (
+      !vetPharmacyId ||
+      !name ||
+      !location ||
+      !contact_number ||
+      !opening_hours
+    ) {
       return res.status(400).json({
         message: "Thông tin không được để trống.",
       });
@@ -97,7 +120,7 @@ class VetPharmacyController {
       },
       {
         where: { id: vetPharmacyId },
-      }
+      },
     )
       .then(() => res.redirect("./"))
       .catch(next);

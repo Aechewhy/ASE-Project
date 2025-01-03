@@ -13,7 +13,6 @@ LivestockProduct.init(
       unique: true,
     },
     name: { type: DataTypes.STRING(100) },
-    
 
     raising_facility_id: {
       type: DataTypes.INTEGER,

@@ -1,8 +1,9 @@
 const { VetFacility } = require("../models");
 const { DisposalFacility } = require("../models");
-const { sequelizeToObject,
-        mutipleSequelizeToObject
-      } = require("../../util/mysql");
+const {
+  sequelizeToObject,
+  mutipleSequelizeToObject,
+} = require("../../util/mysql");
 const { Op } = require("sequelize");
 
 class VetFacilityController {
@@ -25,12 +26,19 @@ class VetFacilityController {
       }
 
       // Chuyển đổi dữ liệu thành plain object
-      const vetFacilityObjects =
-      vetFacility.map(sequelizeToObject);
+      const vetFacilityObjects = vetFacility.map(sequelizeToObject);
+
+      // Kiểm tra quyền admin từ session
+      const isAdmin = req.session.user?.is_admin || false;
+
+      const updatedvetFacility = vetFacilityObjects.map((vetFacility) => ({
+        ...vetFacility,
+        can_edit: isAdmin,
+      }));
 
       // Trả về dữ liệu
       return res.render("./vetFacility/vetFacility", {
-        vetFacility: vetFacilityObjects,
+        vetFacility: updatedvetFacility,
       });
     } catch (err) {
       console.error("Lỗi khi lấy dữ liệu vetFacility:", err);
@@ -55,7 +63,7 @@ class VetFacilityController {
       })
       .catch(next);
   }
-    
+
   //[GET] /certificateFacility/create
   create(req, res, next) {
     res.render("./vetFacility/create");
@@ -73,9 +81,7 @@ class VetFacilityController {
     if (!vetFacilityId || !name || !location || !contact_number || !capacity) {
       return res
         .status(400)
-        .send(
-          "ID, tên, địa chỉ, sdt, số lượng không được để trống.",
-        );
+        .send("ID, tên, địa chỉ, sdt, số lượng không được để trống.");
     }
 
     VetFacility.create({
@@ -97,13 +103,14 @@ class VetFacilityController {
   // [GET] /certificateFacility/:id/edit
   edit(req, res, next) {
     VetFacility.findOne({
-        where: { id: req.params.id },
-      }).then((vetFacility) => {
+      where: { id: req.params.id },
+    })
+      .then((vetFacility) => {
         res.render("./vetFacility/edit", {
           vetFacility: sequelizeToObject(vetFacility),
         });
       })
-    .catch(next);
+      .catch(next);
   }
 
   //[PUT] /certificateFacility/:id
@@ -113,30 +120,29 @@ class VetFacilityController {
     const vetFacilityId = parseInt(req.params.id, 10); // Sử dụng id từ URL params
 
     // Kiểm tra dữ liệu đầu vào
-    if ( !vetFacilityId || !name || !location || !contact_number || !capacity) {
-        return res.status(400).json({
-            message: "ID, tên, địa chỉ, SDT, số lượng không được để trống."
-        });
+    if (!vetFacilityId || !name || !location || !contact_number || !capacity) {
+      return res.status(400).json({
+        message: "ID, tên, địa chỉ, SDT, số lượng không được để trống.",
+      });
     }
 
-  // Thực hiện cập nhật với điều kiện where rõ ràng
-  VetFacility.update(
-      {name, location, contact_number, capacity},
+    // Thực hiện cập nhật với điều kiện where rõ ràng
+    VetFacility.update(
+      { name, location, contact_number, capacity },
       {
-          where: { id: vetFacilityId } // Điều kiện where
-      }
-  )
-  .then(() => res.redirect("./"))
-  .catch(next)
+        where: { id: vetFacilityId }, // Điều kiện where
+      },
+    )
+      .then(() => res.redirect("./"))
+      .catch(next);
   }
 
   //[DELETE] /certificate/:id
   destroy(req, res, next) {
     VetFacility.destroy({ where: { id: req.params.id } })
-        .then(() => res.redirect('./'))
-        .catch(next);
+      .then(() => res.redirect("./"))
+      .catch(next);
   }
-
 }
 
 module.exports = new VetFacilityController();
