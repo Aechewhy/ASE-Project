@@ -40,14 +40,6 @@ class WasteTreatmentFacilityController {
         }),
       );
 
-      // Kiểm tra quyền admin từ session
-      const isAdmin = req.session.user?.is_admin || false;
-            
-      const updatedwasteTreatmentFacility = wasteTreatmentFacilityObjects.map((wasteTreatmentFacility) => ({
-          ...wasteTreatmentFacility,
-          can_edit: isAdmin,
-      }));
-
       // Trả về dữ liệu
       return res.render("./wasteTreatmentFacility/wasteTreatmentFacility", {
         wasteTreatmentFacility: updatedwasteTreatmentFacility,

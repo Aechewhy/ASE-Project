@@ -27,14 +27,6 @@ class CertificateController {
         can_edit: isAdmin,
       }));
 
-      // Kiểm tra quyền admin từ session
-      const isAdmin = req.session.user?.is_admin || false;
-
-      const updatedCertificates = certificateObjects.map((certificate) => ({
-        ...certificate,
-        can_edit: isAdmin,
-      }));
-
       // Trả về dữ liệu (có thể dùng render hoặc json)
       return res.render("./certificate/certificate", {
         certificate: updatedCertificates,

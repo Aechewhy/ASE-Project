@@ -1,7 +1,5 @@
 const User = require("../models/userModel");
 
-const User = require("../models/userModel");
-
 class LoginController {
   // POST /login - Xử lý logic đăng nhập
   async handleLogin(req, res) {
