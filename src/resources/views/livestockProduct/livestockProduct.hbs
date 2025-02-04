@@ -1,13 +1,18 @@
+  <h1 class="mt-4">Danh sách sản phẩm chăn nuôi</h1>
 
+  <div class="row mb-3 mt-4">
+    <div class="col-md-6">
+        <input type="text" id="search-input" class="form-control" placeholder="Tìm kiếm sản phẩm chăn nuôi">
+    </div>
+  </div>
 
-  <h1 class="mt-4">Danh sách sản phẩm</h1>
-  <table class="table table-bordered table-hover mt-4">
+  <table class="table table-bordered table-hover">
     <thead>
       <tr>
         <th>STT</th>
         <th>ID</th>
         <th>Tên sản phẩm</th>
-      
+        <th>Thao tác</th>
       </tr>
     </thead>
     <tbody>
@@ -15,9 +20,7 @@
       <tr>
         <td>{{inc @index}}</td>
         <td>{{this.id}}</td> 
-        <td>{{this.name}}</td>
-        
-        
+        <td>{{this.name}}</td>       
         <td>
           <div class="btn-group" role="group">
             <a href="/livestockProduct/{{this.id}}">

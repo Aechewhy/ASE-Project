@@ -57,5 +57,5 @@ route(app);
 
 //Listen
 app.listen(port, () => {
-  console.log(`Example app listening on http://localhost:${port}`);
+  console.log(`Website đang chạy ở: http://localhost:${port}`);
 });
