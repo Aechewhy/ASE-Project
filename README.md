@@ -18,3 +18,7 @@
     -   Model: src > app > models
     -   View: src > resources > views
     -   Controller: src > app > controllers
+ 
+## User Interface
+
+-  Images folder: user_interface
