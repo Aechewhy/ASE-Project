@@ -12,9 +12,9 @@
     -   Nguyễn Việt Dũng
     -   Nguyễn Trương Hồng Đức
 
-## Mô hình MVC
+## Used MVC
 
--   Đường dẫn folder:
+-   Directory paths:
     -   Model: src > app > models
     -   View: src > resources > views
     -   Controller: src > app > controllers
