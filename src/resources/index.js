@@ -46,6 +46,17 @@ app.use(
   }),
 );
 
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+      if (err) {
+          console.log(err);
+          return res.redirect('/dashboard'); // Nếu lỗi, giữ nguyên trang hiện tại
+      }
+      res.clearCookie('connect.sid'); // Xóa cookie session (tên mặc định của express-session)
+      res.redirect('/login'); // Điều hướng về trang login
+  });
+});
+
 // Middleware để truyền thông tin user vào tất cả các view
 app.use((req, res, next) => {
   console.log("Session user:", req.session.user);
