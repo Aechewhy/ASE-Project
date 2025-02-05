@@ -12,7 +12,7 @@
     -   Nguyễn Việt Dũng
     -   Nguyễn Trương Hồng Đức
 
-## Used MVC
+## Used MVC Model
 
 -   Directory paths:
     -   Model: src > app > models
