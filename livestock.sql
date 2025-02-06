@@ -1,8 +1,6 @@
-DROP TABLE IF EXISTS `certificate_facility`;
 CREATE TABLE `certificate_facility` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100)
 );
 INSERT INTO `certificate_facility` VALUES 
 (1,'ISO 14001 Certification Facility'),
@@ -10,13 +8,10 @@ INSERT INTO `certificate_facility` VALUES
 (3,'Environmental Quality Control Lab');
 
 
-DROP TABLE IF EXISTS `certificate`;
 CREATE TABLE `certificate` (
-  `id` int NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `certificate_facility_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `certificate_facility_id` (`certificate_facility_id`),
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100),
+  `certificate_facility_id` int,
   FOREIGN KEY (`certificate_facility_id`) REFERENCES `certificate_facility` (`id`)
 );
 INSERT INTO `certificate` VALUES 
@@ -27,16 +22,14 @@ INSERT INTO `certificate` VALUES
 (5,'Eco-Friendly Farming Certification',2);
 
 
-DROP TABLE IF EXISTS `raising_facility`;
 CREATE TABLE `raising_facility` (
-  `id` int NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `livestock_type` varchar(100) DEFAULT NULL,
-  `owner` varchar(100) DEFAULT NULL,
-  `location` varchar(100) DEFAULT NULL,
-  `size` varchar(100) DEFAULT NULL,
-  `employee_number` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100),
+  `livestock_type` varchar(100),
+  `owner` varchar(100),
+  `location` varchar(100),
+  `size` varchar(100),
+  `employee_number` int
 );
 INSERT INTO `raising_facility` VALUES 
 (1,'Sunny Acres','Cattle','John Doe','Texas','100 acres',50),
@@ -46,14 +39,12 @@ INSERT INTO `raising_facility` VALUES
 (5,'Wild Heritage','Pigs','Lucas Hill','Illinois','120 acres',40);
 
 
-DROP TABLE IF EXISTS `slaughterhouse`;
 CREATE TABLE `slaughterhouse` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `location` varchar(255) DEFAULT NULL,
-  `contact_number` varchar(20) DEFAULT NULL,
-  `capacity` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100),
+  `location` varchar(255),
+  `contact_number` varchar(20),
+  `capacity` int
 );
 INSERT INTO `slaughterhouse` VALUES 
 (1,'Central Slaughterhouse','123 Meat Rd','123-999-7890',500),
@@ -63,17 +54,13 @@ INSERT INTO `slaughterhouse` VALUES
 (5,'Southside Slaughterhouse','654 Farming Ave','567-999-1234',450);
 
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `phone_number` varchar(100) DEFAULT NULL,
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100),
+  `email` varchar(100) UNIQUE,
+  `phone_number` varchar(100) UNIQUE,
   `is_admin` tinyint(1) DEFAULT '0',
-  `password` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `phone_number` (`phone_number`)
+  `password` varchar(255)
 );
 INSERT INTO `user` VALUES 
 (1,'Alice Johnson','alice.johnson@example.com','1234567890',1,'password123'),
@@ -83,30 +70,24 @@ INSERT INTO `user` VALUES
 (5,'Eve Davis','eve.davis@example.com','5678901234',0,'password123');
 
 
-DROP TABLE IF EXISTS `raising_certificate`;
 CREATE TABLE `raising_certificate` (
   `raising_facility_id` int NOT NULL,
   `certificate_id` int NOT NULL,
-  PRIMARY KEY (`certificate_id`,`raising_facility_id`),
-  KEY `raising_certificate_ibfk_1` (`raising_facility_id`),
   FOREIGN KEY (`raising_facility_id`) REFERENCES `raising_facility` (`id`),
   FOREIGN KEY (`certificate_id`) REFERENCES `certificate` (`id`)
 );
 INSERT INTO `raising_certificate` VALUES (1,1),(1,2),(2,2),(3,4);
 
 
-DROP TABLE IF EXISTS `raising_employee`;
 CREATE TABLE `raising_employee` (
-  `id` int NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `role` varchar(50) DEFAULT NULL,
-  `birthday` datetime DEFAULT NULL,
-  `gender` varchar(1) DEFAULT NULL,
-  `phone_number` varchar(10) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `raising_facility_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `raising_facility_id` (`raising_facility_id`),
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100),
+  `role` varchar(50),
+  `birthday` datetime,
+  `gender` varchar(1),
+  `phone_number` varchar(10),
+  `email` varchar(100),
+  `raising_facility_id` int,
   FOREIGN KEY (`raising_facility_id`) REFERENCES `raising_facility` (`id`)
 );
 INSERT INTO `raising_employee` VALUES 
@@ -117,30 +98,23 @@ INSERT INTO `raising_employee` VALUES
 (5,'Liam Blue','Laborer','1995-12-05 00:00:00','M','5678945678','liam.blue@wildheritage.com',5);
 
 
-DROP TABLE IF EXISTS `livestock_product`;
 CREATE TABLE `livestock_product` (
-  `id` int NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `raising_facility_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `raising_facility_id` (`raising_facility_id`),
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100),
+  `raising_facility_id` int,
   FOREIGN KEY (`raising_facility_id`) REFERENCES `raising_facility` (`id`)
 );
 INSERT INTO `livestock_product` VALUES (1,'Beef',1),(2,'Lamb',2),(3,'Eggs',3),(4,'Cheese',4),(5,'Pork',5);
 
 
-DROP TABLE IF EXISTS `processing_facility`;
 CREATE TABLE `processing_facility` (
-  `id` int NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `location` varchar(100) DEFAULT NULL,
-  `owner` varchar(100) DEFAULT NULL,
-  `type` varchar(100) DEFAULT NULL,
-  `raising_facility_id` int DEFAULT NULL,
-  `slaughterhouse_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `raising_facility_id` (`raising_facility_id`),
-  KEY `slaughterhouse_id` (`slaughterhouse_id`),
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100),
+  `location` varchar(100),
+  `owner` varchar(100),
+  `type` varchar(100),
+  `raising_facility_id` int,
+  `slaughterhouse_id` int,
   FOREIGN KEY (`raising_facility_id`) REFERENCES `raising_facility` (`id`),
   FOREIGN KEY (`slaughterhouse_id`) REFERENCES `slaughterhouse` (`id`)
 );
@@ -152,14 +126,12 @@ INSERT INTO `processing_facility` VALUES
 (5,'Pork Works','Illinois','Lucas Hill','Meat Processing',5,2);
 
 
-DROP TABLE IF EXISTS `vet_facility`;
 CREATE TABLE `vet_facility` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `location` varchar(100) DEFAULT NULL,
-  `contact_number` varchar(100) DEFAULT NULL,
-  `capacity` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100),
+  `location` varchar(100),
+  `contact_number` varchar(100),
+  `capacity` int
 );
 INSERT INTO `vet_facility` VALUES 
 (1,'Animal Health Center','111 Pet Lane','123-555-7890',50),
@@ -169,16 +141,13 @@ INSERT INTO `vet_facility` VALUES
 (5,'Livestock Vet Facility','555 Countryside St','567-555-1234',120);
 
 
-DROP TABLE IF EXISTS `disposal_facility`;
 CREATE TABLE `disposal_facility` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `location` varchar(100) DEFAULT NULL,
-  `contact_number` varchar(100) DEFAULT NULL,
-  `capacity` int DEFAULT NULL,
-  `vet_facility_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `vet_facility_id` (`vet_facility_id`),
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100),
+  `location` varchar(100),
+  `contact_number` varchar(100),
+  `capacity` int,
+  `vet_facility_id` int,
   FOREIGN KEY (`vet_facility_id`) REFERENCES `vet_facility` (`id`)
 );
 INSERT INTO `disposal_facility` VALUES 
@@ -189,16 +158,13 @@ INSERT INTO `disposal_facility` VALUES
 (5,'Urban Animal Disposal','654 City Ave','567-888-1234',250,3);
 
 
-DROP TABLE IF EXISTS `vet_pharmacy`;
 CREATE TABLE `vet_pharmacy` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `location` varchar(255) DEFAULT NULL,
-  `contact_number` varchar(20) DEFAULT NULL,
-  `opening_hours` varchar(100) DEFAULT NULL,
-  `vet_facility_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `vet_facility_id` (`vet_facility_id`),
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(255),
+  `location` varchar(255),
+  `contact_number` varchar(20),
+  `opening_hours` varchar(100),
+  `vet_facility_id` int,
   FOREIGN KEY (`vet_facility_id`) REFERENCES `vet_facility` (`id`)
 );
 INSERT INTO `vet_pharmacy` VALUES 
@@ -209,12 +175,10 @@ INSERT INTO `vet_pharmacy` VALUES
 (5,'Farm Animal Pharmacy','654 Barnyard Ave','567-890-1234','8 AM - 6 PM',5);
 
 
-DROP TABLE IF EXISTS `waste_treatment_facility`;
 CREATE TABLE `waste_treatment_facility` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `location` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100),
+  `location` varchar(100)
 );
 INSERT INTO `waste_treatment_facility` VALUES 
 (1,'Green Waste Treatment Center','New York, USA'),
@@ -222,14 +186,11 @@ INSERT INTO `waste_treatment_facility` VALUES
 (3,'CleanTech Waste Management','Berlin, Germany');
 
 
-DROP TABLE IF EXISTS `waste_treatment_product`;
 CREATE TABLE `waste_treatment_product` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(100),
+  `price` decimal(10,2),
   `facility_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_Facility` (`facility_id`),
   FOREIGN KEY (`facility_id`) REFERENCES `waste_treatment_facility` (`id`)
 );
 INSERT INTO `waste_treatment_product` VALUES 
@@ -238,16 +199,12 @@ INSERT INTO `waste_treatment_product` VALUES
 (3,'Industrial Waste Treatment Fluid',120.00,3);
 
 
-DROP TABLE IF EXISTS `testing_facility`;
 CREATE TABLE `testing_facility` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `location` varchar(255) DEFAULT NULL,
+  `id` int NOT NULL PRIMARY KEY,
+  `name` varchar(255),
+  `location` varchar(255),
   `facility_id` int NOT NULL,
   `product_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_WasteTreatmentFacility` (`facility_id`),
-  KEY `FK_WasteTreatmentProduct` (`product_id`),
   FOREIGN KEY (`facility_id`) REFERENCES `waste_treatment_facility` (`id`),
   FOREIGN KEY (`product_id`) REFERENCES `waste_treatment_product` (`id`)
 );
